@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "yvq9QQcIzQU=",
+  "success": true,
+  "projectFilePath": "Z:\\project\\UnicomTicManagementSystem\\UnicomTicManagementSystem\\UnicomTicManagementSystem.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\UT010776\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.119\\stub.system.data.sqlite.core.netstandard.1.0.119.nupkg.sha512",
+    "C:\\Users\\UT010776\\.nuget\\packages\\system.data.sqlite.core\\1.0.119\\system.data.sqlite.core.1.0.119.nupkg.sha512"
+  ],
+  "logs": []
+}

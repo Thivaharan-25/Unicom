@@ -51,6 +51,7 @@ namespace UnicomTicManagementSystem.View
             User_dgv.ClearSelection();
             ClearInputs();
             selectedStudentId = -1;
+            User_dgv.Columns["Password"].Visible = false;
         }
         private void ClearInputs()
         {
@@ -64,55 +65,57 @@ namespace UnicomTicManagementSystem.View
         }
         private void T_uname_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
         private void btn_register_Click(object sender, EventArgs e)
         {
-          
+
             MessageBox.Show("Registation Successfull");
         }
         private void button1_Click(object sender, EventArgs e)
         {
-          
+
             MessageBox.Show("Update Successfull");
         }
         private void button2_Click(object sender, EventArgs e)
         {
-         
+
             MessageBox.Show("Delete Successfull");
         }
         private void button3_Click(object sender, EventArgs e)
         {
-          
-          
+
+
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             MessageBox.Show($"Cell clicked at row {e.RowIndex}, column {e.ColumnIndex}");
         }
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             MessageBox.Show($"You selected: {comboBox4.SelectedItem}");
         }
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
             MessageBox.Show($"You selected: {comboBox4.SelectedItem}");
         }
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
+
             MessageBox.Show($"You selected: {comboBox4.SelectedItem}");
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
             MessageBox.Show($"You selected: {comboBox4.SelectedItem}");
         }
-       
 
+        private void T_password_TextChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

@@ -13,5 +13,8 @@
     <Compile Update="View\StudentsMenu.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\Timetable.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

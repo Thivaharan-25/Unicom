@@ -2,15 +2,18 @@ using System.Net;
 using System.Xml.Linq;
 using UnicomTicManagementSystem.Controller;
 using UnicomTicManagementSystem.View;
+using static UnicomTicManagementSystem.Method.Users;
 
 namespace UnicomTicManagementSystem
 {
     public partial class Unicom : Form
     {
+        
         private readonly adminController adminController;
         public Unicom()
         {
             InitializeComponent();
+            adminController = new adminController();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -33,29 +36,29 @@ namespace UnicomTicManagementSystem
 
             if (username == validUsername && password == validPassword)
             {
-                
-                student userView = new student();
-                userView.Show();
+
+                student maintenance = new student();
+                maintenance.Show();
                 this.Hide();
             }
-            if (string.IsNullOrWhiteSpace(t_uname.Text) || string.IsNullOrWhiteSpace(t_password.Text))
-            {
-                MessageBox.Show("Please enter both Name and Address.");
-                return;
-            }
-            //else
+            //if (string.IsNullOrWhiteSpace(t_uname.Text) || string.IsNullOrWhiteSpace(t_password.Text))
             //{
-            //    Credentials credentials = new Credentials();
-            //    credentials.Username = username;
-            //    credentials.Password = password;
-            //    var result = adminController.btn_login(credentials);
-            //    if (result)
-            //    {
-            //        student userView = new student();
-            //        userView.Show();
-            //        this.Hide();
-            //    }
+            //    MessageBox.Show("Please enter both Name and Address.");
+            //    return;
+            //}
             else
+            {
+                Credentials credentials = new Credentials();
+                credentials.userName = username;
+                credentials.password = password;
+                var result = adminController.Login(credentials);
+                if (result)
+                {
+                    student maintenance = new student();
+                    maintenance.Show();
+                    this.Hide();
+                }
+                else
                 {
                     MessageBox.Show("Invalid username or password", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -63,12 +66,13 @@ namespace UnicomTicManagementSystem
                     t_uname.Clear();
                     t_uname.Focus();
                 }
-            
-        }
 
+            }
+        }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
+        
     }
 }

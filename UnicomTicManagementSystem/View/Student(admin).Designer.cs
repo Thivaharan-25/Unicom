@@ -88,6 +88,7 @@
             T_password.Name = "T_password";
             T_password.Size = new Size(185, 23);
             T_password.TabIndex = 3;
+            T_password.TextChanged += T_password_TextChanged;
             // 
             // label3
             // 
@@ -102,6 +103,7 @@
             // rolebox
             // 
             rolebox.FormattingEnabled = true;
+            rolebox.Items.AddRange(new object[] { "Infomation Communication Technology", "Mathematics", "Biology", "Arts", "Commerce" });
             rolebox.Location = new Point(123, 239);
             rolebox.Name = "rolebox";
             rolebox.Size = new Size(145, 23);
@@ -199,6 +201,7 @@
             // comboBox4
             // 
             comboBox4.FormattingEnabled = true;
+            comboBox4.Items.AddRange(new object[] { "Male", "Female" });
             comboBox4.Location = new Point(123, 197);
             comboBox4.Name = "comboBox4";
             comboBox4.Size = new Size(145, 23);
@@ -268,6 +271,7 @@
             // comboBox5
             // 
             comboBox5.FormattingEnabled = true;
+            comboBox5.Items.AddRange(new object[] { "Admin", "Lecturer", "Staff", "Student" });
             comboBox5.Location = new Point(123, 152);
             comboBox5.Name = "comboBox5";
             comboBox5.Size = new Size(145, 23);
@@ -302,7 +306,7 @@
             Controls.Add(label1);
             Controls.Add(T_uname);
             Name = "student";
-            Text = "Student(admin)";
+            Text = "ad_StudentMenu";
             Load += AddUsers_Load;
             ((System.ComponentModel.ISupportInitialize)User_dgv).EndInit();
             ResumeLayout(false);

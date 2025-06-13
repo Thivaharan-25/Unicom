@@ -28,72 +28,83 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            btn_timetable = new Button();
+            admin_panel = new Panel();
+            btn_exammain = new Button();
+            btn_usermain = new Button();
+            admin_panel.SuspendLayout();
             SuspendLayout();
             // 
-            // button1
+            // btn_timetable
             // 
-            button1.Font = new Font("Times New Roman", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(276, 66);
-            button1.Name = "button1";
-            button1.Size = new Size(149, 32);
-            button1.TabIndex = 0;
-            button1.Text = "ADMIN";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btn_timetable.FlatStyle = FlatStyle.Flat;
+            btn_timetable.Font = new Font("Calibri", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_timetable.ForeColor = Color.White;
+            btn_timetable.Location = new Point(7, 178);
+            btn_timetable.Name = "btn_timetable";
+            btn_timetable.Size = new Size(113, 32);
+            btn_timetable.TabIndex = 2;
+            btn_timetable.Text = "TimeTable";
+            btn_timetable.UseVisualStyleBackColor = true;
+            btn_timetable.Click += btn_timetable_Click;
             // 
-            // button2
+            // admin_panel
             // 
-            button2.Font = new Font("Times New Roman", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(276, 244);
-            button2.Name = "button2";
-            button2.Size = new Size(149, 32);
-            button2.TabIndex = 1;
-            button2.Text = "LECTURER";
-            button2.UseVisualStyleBackColor = true;
+            admin_panel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            admin_panel.BackColor = SystemColors.ActiveCaption;
+            admin_panel.BorderStyle = BorderStyle.FixedSingle;
+            admin_panel.Controls.Add(btn_exammain);
+            admin_panel.Controls.Add(btn_usermain);
+            admin_panel.Controls.Add(btn_timetable);
+            admin_panel.Location = new Point(0, 0);
+            admin_panel.Name = "admin_panel";
+            admin_panel.Size = new Size(131, 452);
+            admin_panel.TabIndex = 4;
+            admin_panel.Paint += panel1_Paint;
             // 
-            // button3
+            // btn_exammain
             // 
-            button3.Font = new Font("Times New Roman", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(276, 152);
-            button3.Name = "button3";
-            button3.Size = new Size(149, 32);
-            button3.TabIndex = 2;
-            button3.Text = "STAFF";
-            button3.UseVisualStyleBackColor = true;
+            btn_exammain.FlatStyle = FlatStyle.Flat;
+            btn_exammain.Font = new Font("Calibri", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_exammain.ForeColor = Color.White;
+            btn_exammain.Location = new Point(7, 243);
+            btn_exammain.Name = "btn_exammain";
+            btn_exammain.Size = new Size(113, 32);
+            btn_exammain.TabIndex = 7;
+            btn_exammain.Text = "Exam Maintenance";
+            btn_exammain.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btn_usermain
             // 
-            button4.Font = new Font("Times New Roman", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button4.Location = new Point(276, 331);
-            button4.Name = "button4";
-            button4.Size = new Size(149, 32);
-            button4.TabIndex = 3;
-            button4.Text = "STUDENT";
-            button4.UseVisualStyleBackColor = true;
+            btn_usermain.FlatStyle = FlatStyle.Flat;
+            btn_usermain.Font = new Font("Calibri", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_usermain.ForeColor = Color.White;
+            btn_usermain.Location = new Point(7, 108);
+            btn_usermain.Name = "btn_usermain";
+            btn_usermain.Size = new Size(113, 32);
+            btn_usermain.TabIndex = 5;
+            btn_usermain.Text = "User Maintenance";
+            btn_usermain.UseVisualStyleBackColor = true;
+            btn_usermain.Click += btn_usermain_Click;
             // 
             // Select
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            BackColor = SystemColors.ButtonHighlight;
+            BackgroundImageLayout = ImageLayout.Center;
+            ClientSize = new Size(927, 450);
+            Controls.Add(admin_panel);
             Name = "Select";
             Text = "Select";
+            admin_panel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Button btn_timetable;
+        private Panel admin_panel;
+        private Button btn_usermain;
+        private Button btn_exammain;
     }
 }

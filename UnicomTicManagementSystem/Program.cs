@@ -1,3 +1,6 @@
+using UnicomTicManagementSystem.Data;
+using UnicomTicManagementSystem.View;
+
 namespace UnicomTicManagementSystem
 {
     internal static class Program
@@ -8,10 +11,16 @@ namespace UnicomTicManagementSystem
         [STAThread]
         static void Main()
         {
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Unicom());
+            DatabaseInitializer.CreateTable();
+
+            Application.Run(new Select());
+
+
         }
     }
 }

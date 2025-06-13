@@ -59,5 +59,15 @@ namespace UnicomTicManagementSystem.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tic {
+            get {
+                object obj = ResourceManager.GetObject("tic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

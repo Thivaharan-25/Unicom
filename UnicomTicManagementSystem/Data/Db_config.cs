@@ -6,10 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace UnicomTicManagementSystem.Data
-{
-    internal class Db_config
+
     {
-        public static class DbCon
+        public static class DbConfig
         {
             private static string connectionString = "Data Source=Unicom.db;Version=3;";
 
@@ -21,4 +20,4 @@ namespace UnicomTicManagementSystem.Data
             }
         }
     }
-}
+

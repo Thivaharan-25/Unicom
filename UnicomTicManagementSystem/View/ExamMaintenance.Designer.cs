@@ -1,6 +1,6 @@
 ﻿namespace UnicomTicManagementSystem.View
 {
-    partial class StudentsMenu
+    partial class Exam
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,14 @@
         {
             SuspendLayout();
             // 
-            // StudentsMenu
+            // Exam
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(953, 550);
-            Name = "StudentsMenu";
-            Text = "StudentsMenu";
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "Exam";
+            Text = "Exam Maintenance";
             ResumeLayout(false);
         }
 

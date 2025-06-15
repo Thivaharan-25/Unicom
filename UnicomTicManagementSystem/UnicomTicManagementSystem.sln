@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34928.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnicomTicManagementSystem", "UnicomTicManagementSystem\UnicomTicManagementSystem.csproj", "{8D337FA9-7B46-4DCC-BF7F-E0CA58C7BCAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D337FA9-7B46-4DCC-BF7F-E0CA58C7BCAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D337FA9-7B46-4DCC-BF7F-E0CA58C7BCAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D337FA9-7B46-4DCC-BF7F-E0CA58C7BCAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D337FA9-7B46-4DCC-BF7F-E0CA58C7BCAB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7A90A791-0D05-4ECB-BD2B-AE47C7E698D7}
+	EndGlobalSection
+EndGlobal

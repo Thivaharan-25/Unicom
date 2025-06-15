@@ -16,19 +16,20 @@ namespace UnicomTicManagementSystem.View
         {
             InitializeComponent();
             LoadForm(new student());
+           
         }
         public void LoadForm(object formObj)
         {
-            if (this.admin_panel.Controls.Count > 0)
+            if (this.mainpanel.Controls.Count > 0)
             {
-                this.admin_panel.Controls.RemoveAt(0);
+                this.mainpanel.Controls.RemoveAt(0);
             }
 
             Form form = formObj as Form;
             form.TopLevel = false;
             form.Dock = DockStyle.Fill;
-            this.admin_panel.Controls.Add(form);
-            this.admin_panel.Tag = form;
+            this.mainpanel.Controls.Add(form);
+            this.mainpanel.Tag = form;
             form.Show();
         }
         private void button1_Click(object sender, EventArgs e)
@@ -49,6 +50,46 @@ namespace UnicomTicManagementSystem.View
         private void btn_timetable_Click(object sender, EventArgs e)
         {
             LoadForm(new Timetable());
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+        private void btn_course_Click_1(object sender, EventArgs e)
+        {
+            LoadForm(new Course());
+        }
+
+        private void Select_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mainpanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btn_course_Click(object sender, EventArgs e)
+        {
+            LoadForm(new Course());
+        
+        }
+
+        private void btn_usermain_Click_1(object sender, EventArgs e)
+        {
+            LoadForm(new student());
+        }
+
+        private void btn_timetable_Click_1(object sender, EventArgs e)
+        {
+            LoadForm(new Timetable());
+        }
+
+        private void btn_exammain_Click(object sender, EventArgs e)
+        {
+            LoadForm(new Exam());
         }
     }
 }

@@ -11,13 +11,19 @@ namespace UnicomTicManagementSystem.Data
     {
         public static void CreateTable()
         {
-            using (var conn = DbConfig.GetConnection())
+            try
             {
-                string tableQueries = @"
+                using (var conn = DbConfig.GetConnection())
+                {
+                    
+
+                    string tableQueries = @"
                 CREATE TABLE IF NOT EXISTS Users (
                     UsersId INTEGER PRIMARY KEY AUTOINCREMENT,
+                    UserCode TEXT,
                     UserName TEXT NOT NULL,
                     UsersPassword TEXT NOT NULL,
+                    UsersAddress TEXT NOT NULL,
                     UsersGender TEXT NOT NULL,
                     UsersRole TEXT NOT NULL
                 );
@@ -71,10 +77,15 @@ namespace UnicomTicManagementSystem.Data
                 );
             ";
 
-                using (var cmd = new SQLiteCommand(tableQueries, conn))
-                {
+                    SQLiteCommand cmd = new SQLiteCommand(tableQueries, conn);
                     cmd.ExecuteNonQuery();
+
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Table creation failed: " + ex.Message);
+                throw;
             }
         }
     }

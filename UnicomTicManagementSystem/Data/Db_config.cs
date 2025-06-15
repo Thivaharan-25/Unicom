@@ -10,7 +10,7 @@ namespace UnicomTicManagementSystem.Data
     {
         public static class DbConfig
         {
-            private static string connectionString = "Data Source=Unicom.db;Version=3;";
+            private static string connectionString = "Data Source=System.db;Version=3;";
 
             public static SQLiteConnection GetConnection()
             {
@@ -18,6 +18,20 @@ namespace UnicomTicManagementSystem.Data
                 conn.Open();
                 return conn;
             }
+            //try
+            //    {
+            //        using (var conn = DbConfig.GetConnection())
+            //        {
+            //            conn.Open();
+            //            var cmd = new SQLiteCommand(tableQueries, conn);
+            //            cmd.ExecuteNonQuery();
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Console.WriteLine("Error during table creation: " + ex.Message);
+            //    }
+
         }
     }
 

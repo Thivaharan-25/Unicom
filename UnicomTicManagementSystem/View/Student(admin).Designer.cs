@@ -33,15 +33,15 @@
             label2 = new Label();
             T_password = new TextBox();
             label3 = new Label();
-            rolebox = new ComboBox();
+            Course = new ComboBox();
             btn_register = new Button();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
             User_dgv = new DataGridView();
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
-            comboBox3 = new ComboBox();
+            Subject1 = new ComboBox();
+            subject2 = new ComboBox();
+            subject3 = new ComboBox();
             textBox1 = new TextBox();
             comboBox4 = new ComboBox();
             label5 = new Label();
@@ -50,7 +50,7 @@
             label8 = new Label();
             label4 = new Label();
             label9 = new Label();
-            comboBox5 = new ComboBox();
+            role = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)User_dgv).BeginInit();
             SuspendLayout();
             // 
@@ -100,14 +100,15 @@
             label3.TabIndex = 4;
             label3.Text = "Course";
             // 
-            // rolebox
+            // Course
             // 
-            rolebox.FormattingEnabled = true;
-            rolebox.Items.AddRange(new object[] { "Infomation Communication Technology", "Mathematics", "Biology", "Arts", "Commerce" });
-            rolebox.Location = new Point(123, 239);
-            rolebox.Name = "rolebox";
-            rolebox.Size = new Size(145, 23);
-            rolebox.TabIndex = 5;
+            Course.FormattingEnabled = true;
+            Course.Items.AddRange(new object[] { "Mathematics", "Biology", "Arts", "Commerce", "Engineering Technology ", "Bio-system technology" });
+            Course.Location = new Point(123, 239);
+            Course.Name = "Course";
+            Course.Size = new Size(145, 23);
+            Course.TabIndex = 5;
+            Course.SelectedIndexChanged += Course_SelectedIndexChanged;
             // 
             // btn_register
             // 
@@ -163,33 +164,36 @@
             User_dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             User_dgv.Location = new Point(383, 38);
             User_dgv.Name = "User_dgv";
-            User_dgv.Size = new Size(562, 406);
+            User_dgv.Size = new Size(630, 406);
             User_dgv.TabIndex = 11;
             User_dgv.CellContentClick += dataGridView1_CellContentClick;
+            User_dgv.SelectionChanged += dgvStudents_SelectionChanged;
             // 
-            // comboBox1
+            // Subject1
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(123, 280);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(145, 23);
-            comboBox1.TabIndex = 12;
+            Subject1.FormattingEnabled = true;
+            Subject1.Items.AddRange(new object[] { "Accounting", "BusinessStudies", "Finance", "Marketing", "Taxation", "Auditing", "Entrepreneurship", "Statistics", "Commercial Law", "History", "Geography", "Political Science", "Sociology", "Psychology", "Philosophy", "English Literature ", "Economics", "Arts", "Anthropology" });
+            Subject1.Location = new Point(123, 280);
+            Subject1.Name = "Subject1";
+            Subject1.Size = new Size(145, 23);
+            Subject1.TabIndex = 12;
+            Subject1.SelectedIndexChanged += Subject1_SelectedIndexChanged_1;
             // 
-            // comboBox2
+            // subject2
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(123, 324);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(145, 23);
-            comboBox2.TabIndex = 13;
+            subject2.FormattingEnabled = true;
+            subject2.Location = new Point(123, 324);
+            subject2.Name = "subject2";
+            subject2.Size = new Size(145, 23);
+            subject2.TabIndex = 13;
             // 
-            // comboBox3
+            // subject3
             // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(123, 365);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(145, 23);
-            comboBox3.TabIndex = 14;
+            subject3.FormattingEnabled = true;
+            subject3.Location = new Point(123, 365);
+            subject3.Name = "subject3";
+            subject3.Size = new Size(145, 23);
+            subject3.TabIndex = 14;
             // 
             // textBox1
             // 
@@ -197,12 +201,13 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(185, 23);
             textBox1.TabIndex = 16;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // comboBox4
             // 
             comboBox4.FormattingEnabled = true;
             comboBox4.Items.AddRange(new object[] { "Male", "Female" });
-            comboBox4.Location = new Point(123, 197);
+            comboBox4.Location = new Point(123, 204);
             comboBox4.Name = "comboBox4";
             comboBox4.Size = new Size(145, 23);
             comboBox4.TabIndex = 17;
@@ -268,21 +273,22 @@
             label9.TabIndex = 23;
             label9.Text = "Role";
             // 
-            // comboBox5
+            // role
             // 
-            comboBox5.FormattingEnabled = true;
-            comboBox5.Items.AddRange(new object[] { "Admin", "Lecturer", "Staff", "Student" });
-            comboBox5.Location = new Point(123, 152);
-            comboBox5.Name = "comboBox5";
-            comboBox5.Size = new Size(145, 23);
-            comboBox5.TabIndex = 24;
+            role.FormattingEnabled = true;
+            role.Items.AddRange(new object[] { "Admin", "Lecturer", "Staff", "Student" });
+            role.Location = new Point(123, 152);
+            role.Name = "role";
+            role.Size = new Size(145, 23);
+            role.TabIndex = 24;
+            role.SelectedIndexChanged += comboBox5_SelectedIndexChanged;
             // 
             // student
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(957, 518);
-            Controls.Add(comboBox5);
+            ClientSize = new Size(1058, 518);
+            Controls.Add(role);
             Controls.Add(label9);
             Controls.Add(label4);
             Controls.Add(label8);
@@ -291,20 +297,21 @@
             Controls.Add(label5);
             Controls.Add(comboBox4);
             Controls.Add(textBox1);
-            Controls.Add(comboBox3);
-            Controls.Add(comboBox2);
-            Controls.Add(comboBox1);
+            Controls.Add(subject3);
+            Controls.Add(subject2);
+            Controls.Add(Subject1);
             Controls.Add(User_dgv);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(btn_register);
-            Controls.Add(rolebox);
+            Controls.Add(Course);
             Controls.Add(label3);
             Controls.Add(T_password);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(T_uname);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "student";
             Text = "ad_StudentMenu";
             Load += AddUsers_Load;
@@ -320,15 +327,15 @@
         private Label label2;
         private TextBox T_password;
         private Label label3;
-        private ComboBox rolebox;
+        private ComboBox Course;
         private DataGridView User_dgv;
         private Button btn_register;
         private Button button1;
         private Button button2;
         private Button button3;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
-        private ComboBox comboBox3;
+        private ComboBox Subject1;
+        private ComboBox subject2;
+        private ComboBox subject3;
         private TextBox textBox1;
         private ComboBox comboBox4;
         private Label label5;
@@ -337,6 +344,6 @@
         private Label label8;
         private Label label4;
         private Label label9;
-        private ComboBox comboBox5;
+        private ComboBox role;
     }
 }

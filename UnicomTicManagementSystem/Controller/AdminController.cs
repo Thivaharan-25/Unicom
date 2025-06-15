@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Drawing;
@@ -29,6 +30,39 @@ namespace UnicomTicManagementSystem.Controller
         //    }
         //}
         //return admin;
+
+
+        public List<Users> GetAllUsers()
+        {
+            List<Users> users = new List<Users>();
+            using (var conn = DbConfig.GetConnection())
+            {
+
+                var cmd = new SQLiteCommand(@"SELECT * FROM Users", conn);
+                //cmd.CommandText = "SELECT * FROM Users"; var conn1 = conn;
+
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        users.Add(new Users
+                        {
+
+                            Id = reader.GetInt32(0),
+                            UserCode = reader.GetString(1),
+                            username = reader.GetString(2),
+                            address = reader.GetString(4),
+                            password = reader.GetString(3),
+                            Gender = reader.GetString(5),
+                            Role = reader.GetString(6)
+
+                        });
+                    }
+                }
+            }
+            return users;
+        }
 
         public List<Student> GetAllStudents()
         {
@@ -106,20 +140,22 @@ namespace UnicomTicManagementSystem.Controller
                 {
 
 
-                    string query = "SELECT Username, Password  FROM Users WHERE Username = @Username";
+                    string query = "SELECT UserCode, UsersPassword FROM Users WHERE UserCode = @Username";
+
 
                     using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                     {
 
-                        cmd.Parameters.AddWithValue("@Username", credentials.userName);
+                        cmd.Parameters.AddWithValue("@UserCode", credentials.userName);
 
 
                         SQLiteDataReader reader = cmd.ExecuteReader();
                         while (reader.Read())
                         {
 
-                            user.username = reader["Username"].ToString();
-                            user.password = reader["Password"].ToString();
+                            user.username = reader["UserCode"].ToString();
+                            user.password = reader["UsersPassword"].ToString();
+
                         }
                     }
                     if (user.password == credentials.password)
@@ -142,21 +178,114 @@ namespace UnicomTicManagementSystem.Controller
         {
             using (var conn = DbConfig.GetConnection())
             {
-                conn.Open();
-                string query = "Insert into Users(Name , UserId ,Password ,Role, Gender) values(@Name , @UserId , @Password , @Role , @Gender)";
+                
+
+                // Step 1: Insert user (UserCode will be updated after generating it)
+                string query = "INSERT INTO Users(UserName, UsersPassword, UsersRole, UsersGender, UsersAddress) " +
+                               "VALUES (@Name, @Password, @Role, @Gender, @address)";
+
                 using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Name", user.username);
-                    cmd.Parameters.AddWithValue("@UserId", user.Id);
                     cmd.Parameters.AddWithValue("@Password", user.password);
                     cmd.Parameters.AddWithValue("@Role", user.Role);
                     cmd.Parameters.AddWithValue("@Gender", user.Gender);
+                    cmd.Parameters.AddWithValue("@address", user.address);
                     cmd.ExecuteNonQuery();
                 }
 
+                // Step 2: Get last inserted ID
+                long id;
+                using (var cmd = new SQLiteCommand("SELECT last_insert_rowid();", conn))
+                {
+                    id = (long)cmd.ExecuteScalar();
+                }
 
+                // Step 3: Generate prefixed code based on role
+                string prefix = GetPrefix(user.Role);
+                string userCode = $"{prefix}{id:D3}";
+                user.Id = (int)id;
+                user.UserCode = userCode; // If you store UserCode in model
+
+                // Step 4: Update record with userCode
+                using (var cmd = new SQLiteCommand("UPDATE Users SET UserCode = @UserCode WHERE UsersId = @Id", conn))
+                {
+                    cmd.Parameters.AddWithValue("@UserCode", userCode);
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.ExecuteNonQuery();
+                }
+
+                return user;
+            }
+        }
+
+        public Users UpdateUser(Users user)
+        {
+            using (var conn = DbConfig.GetConnection())
+            {
+                
+                string existingRole = null;
+                using (var cmd = new SQLiteCommand("SELECT UsersRole FROM Users WHERE UsersId = @UserId", conn))
+                {
+                    cmd.Parameters.AddWithValue("@UserId", user.Id);
+                    existingRole = cmd.ExecuteScalar()?.ToString();
+                }
+
+               
+                user.Role = existingRole;
+
+                string query = "UPDATE Users SET UserName = @Name, " +
+                      "UsersPassword = @Password, UsersRole = @Role, " +
+                      "UsersGender = @Gender, UsersAddress = @address " +
+                      "WHERE UsersId = @UserId";
+                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@UserId", user.Id);
+                    cmd.Parameters.AddWithValue("@Name", user.username);
+                    cmd.Parameters.AddWithValue("@Password", user.password);
+                    cmd.Parameters.AddWithValue("@Role", user.Role); 
+                    cmd.Parameters.AddWithValue("@Gender", user.Gender);
+                    cmd.Parameters.AddWithValue("@address", user.address);
+                    cmd.ExecuteNonQuery();
+                }
             }
             return user;
-        } 
+        }
+
+        public void DeleteUser(int UsersId)
+        {
+            using (var conn = DbConfig.GetConnection())
+            {
+
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "DELETE FROM Users WHERE UsersId = @id";
+                cmd.Parameters.AddWithValue("@id", UsersId);
+                cmd.ExecuteNonQuery();
+
+                //{
+                //    cmd.Parameters.AddWithValue("@UserId", user.Id);
+                //    cmd.Parameters.AddWithValue("@Name", user.username);
+                //    cmd.Parameters.AddWithValue("@Password", user.password);
+                //    cmd.Parameters.AddWithValue("@Role", user.Role);
+                //    cmd.Parameters.AddWithValue("@Gender", user.Gender);
+                //    cmd.Parameters.AddWithValue("@address", user.address);
+                //    cmd.ExecuteNonQuery();
+                //}
+            }
+
+        }
+        private string GetPrefix(string role)
+        {
+            return role.ToLower() switch
+            {
+                "admin" => "AT",
+                "student" => "UT",
+                "staff" => "ST",
+                "lecturer" => "LT",
+                _ => "UN"
+            };
+        }
     }
+    
 }
+

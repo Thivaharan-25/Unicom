@@ -11,8 +11,14 @@ namespace UnicomTicManagementSystem.Method
         public int Id { get; set; }
         public string username { get; set; }
         public string password { get; set; }
+        public string address { get; set; }
         public string Gender { get; set; }
         public string Role { get; set; }
+        public string Course { get; set; }
+        public string subject1 { get; set; }
+        public string subject2 { get; set; }
+        public string Subject3 { get; set; }
+        public string UserCode { get; set; }
 
         public enum Roles
         {
@@ -33,6 +39,7 @@ namespace UnicomTicManagementSystem.Method
             public string userName { get; set; }
             public string password { get; set; }
         }
+       
     }
 }
 

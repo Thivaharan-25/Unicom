@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace UnicomTicManagementSystem.View
 {
-    public partial class StudentsMenu : Form
+    public partial class Course : Form
     {
-        public StudentsMenu()
+        public Course()
         {
             InitializeComponent();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

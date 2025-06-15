@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace UnicomTicManagementSystem.View
 {
-    public partial class Timetable : Form
+    public partial class Exam : Form
     {
-        public Timetable()
+        public Exam()
         {
             InitializeComponent();
-        }
-
-        private void Timetable_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

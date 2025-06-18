@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            t_date = new TextBox();
             c_time = new ComboBox();
             label1 = new Label();
             label2 = new Label();
@@ -47,17 +46,10 @@
             label6 = new Label();
             label7 = new Label();
             c_roomtype = new ComboBox();
+            t_date = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)dgv_time).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // t_date
-            // 
-            t_date.Location = new Point(96, 135);
-            t_date.Name = "t_date";
-            t_date.Size = new Size(148, 23);
-            t_date.TabIndex = 5;
-            t_date.TextChanged += textBox1_TextChanged;
             // 
             // c_time
             // 
@@ -73,7 +65,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(24, 139);
+            label1.Location = new Point(25, 142);
             label1.Name = "label1";
             label1.Size = new Size(41, 19);
             label1.TabIndex = 7;
@@ -83,7 +75,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(24, 175);
+            label2.Location = new Point(25, 179);
             label2.Name = "label2";
             label2.Size = new Size(42, 19);
             label2.TabIndex = 8;
@@ -92,7 +84,7 @@
             // dgv_time
             // 
             dgv_time.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_time.Location = new Point(397, 36);
+            dgv_time.Location = new Point(407, 27);
             dgv_time.Name = "dgv_time";
             dgv_time.Size = new Size(541, 423);
             dgv_time.TabIndex = 9;
@@ -178,6 +170,7 @@
             btn_delete.TabIndex = 17;
             btn_delete.Text = "Delete";
             btn_delete.UseVisualStyleBackColor = false;
+            btn_delete.Click += btn_delete_Click;
             // 
             // btn_update
             // 
@@ -214,7 +207,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(17, 210);
+            label6.Location = new Point(17, 214);
             label6.Name = "label6";
             label6.Size = new Size(55, 19);
             label6.TabIndex = 21;
@@ -241,12 +234,20 @@
             c_roomtype.Size = new Size(148, 23);
             c_roomtype.TabIndex = 23;
             // 
+            // t_date
+            // 
+            t_date.Location = new Point(96, 139);
+            t_date.Name = "t_date";
+            t_date.Size = new Size(200, 23);
+            t_date.TabIndex = 24;
+            // 
             // Timetable
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(989, 553);
+            Controls.Add(t_date);
             Controls.Add(c_roomtype);
             Controls.Add(label7);
             Controls.Add(label6);
@@ -265,7 +266,6 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(c_time);
-            Controls.Add(t_date);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Timetable";
             Text = "Timetable";
@@ -277,8 +277,6 @@
         }
 
         #endregion
-
-        private TextBox t_date;
         private ComboBox c_time;
         private Label label1;
         private Label label2;
@@ -297,5 +295,6 @@
         private Label label6;
         private Label label7;
         private ComboBox c_roomtype;
+        private DateTimePicker t_date;
     }
 }

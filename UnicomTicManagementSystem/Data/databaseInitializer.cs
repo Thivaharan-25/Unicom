@@ -49,7 +49,7 @@ namespace UnicomTicManagementSystem.Data
                     Gender TEXT NOT NULL
                 );
 
-                CREATE TABLE IF NOT EXISTS Lecturer (
+                CREATE TABLE IF NOT EXISTS Lecturers (
                     LecturerId INTEGER PRIMARY KEY AUTOINCREMENT,
                     LName TEXT NOT NULL,
                     LPassword TEXT NOT NULL,

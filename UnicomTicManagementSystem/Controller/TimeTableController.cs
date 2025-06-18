@@ -69,6 +69,28 @@ namespace UnicomTicManagementSystem.Controller
             return subjectNames;
         }
 
+        public List<string> GetAllLecturerNames()
+        {
+            List<string> Lecturer = new List<string>();
+
+            using (var conn = DbConfig.GetConnection())
+            {
+                string query = "SELECT LName FROM Lecturers";
+                using (var cmd = new SQLiteCommand(query, conn))
+
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Lecturer.Add(reader["LName"].ToString());
+                    }
+                }
+            }
+
+            return Lecturer;
+        }
+
         public bool UpdateTime(TimeTable time)
         {
             try
@@ -76,13 +98,13 @@ namespace UnicomTicManagementSystem.Controller
                 using (var conn = DbConfig.GetConnection())
                 {
                     string quary = @"UPDATE TimeTable 
-                                    SET DayOfWeek = @date, TimeSlot = @time, CourseID = @course,
-                                    SubjectId = @subject, LecturerId = @lecturer, HallNo = @hall
-                                    WHERE TimetableID = @id";
+                             SET DayOfWeek = @date, TimeSlot = @time, CourseID = @course,
+                                 SubjectId = @subject, LecturerId = @lecturer, HallNo = @hall
+                             WHERE TimetableID = @id";
 
                     using (SQLiteCommand cmd = new SQLiteCommand(quary, conn))
                     {
-                        cmd.Parameters.AddWithValue("@id", time.Id);
+                        cmd.Parameters.AddWithValue("@id", time.Id); // ✅ ADD THIS
                         cmd.Parameters.AddWithValue("@date", time.DateOfWeek);
                         cmd.Parameters.AddWithValue("@time", time.TimeSlot);
                         cmd.Parameters.AddWithValue("@course", time.Course);
@@ -91,29 +113,32 @@ namespace UnicomTicManagementSystem.Controller
                         cmd.Parameters.AddWithValue("@hall", time.Hall);
                         cmd.ExecuteNonQuery();
                     }
+
                     using (var conn1 = DbConfig.GetConnection())
                     {
-                        string query = @"UPDATE Hall 
-                                       SET HName = @name, RoomType = @type
-                                       WHERE HallNo = @id";
+                        string query = @"UPDATE Halls 
+                                 SET HName = @name, RoomType = @type
+                                 WHERE HallNo = @id";
+
                         using (SQLiteCommand cmd = new SQLiteCommand(query, conn1))
                         {
-                            cmd.Parameters.AddWithValue("@id", time.HallNo);
+                            cmd.Parameters.AddWithValue("@id", time.HallNo); // ✅ ADD THIS
                             cmd.Parameters.AddWithValue("@name", time.Hall);
                             cmd.Parameters.AddWithValue("@type", time.RoomType);
                             cmd.ExecuteNonQuery();
                         }
                     }
+
                     return true;
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                MessageBox.Show("Error: " + ex.Message);
                 return false;
             }
-        
-            
         }
+
 
         public bool AddTime(TimeTable time)
         {
@@ -121,11 +146,11 @@ namespace UnicomTicManagementSystem.Controller
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    string query = "INSERT INTO TimeTable(TimetableID,DayOfWeek,TimeSlot,CourseID,SubjectId,LecturerId,HallNo) " +
-                                   "VALUES (@id, @date, @time, @course, @subject, @lecturer,@hall)";
+                    string query = "INSERT INTO TimeTable(DayOfWeek,TimeSlot,CourseID,SubjectId,LecturerId,HallNo) " +
+                                   "VALUES (@date, @time, @course, @subject, @lecturer,@hall)";
                     using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@id", time.Id);
+
                         cmd.Parameters.AddWithValue("@date", time.DateOfWeek);
                         cmd.Parameters.AddWithValue("@time", time.TimeSlot);
                         cmd.Parameters.AddWithValue("@course", time.Course);
@@ -136,24 +161,25 @@ namespace UnicomTicManagementSystem.Controller
                     }
                     using (var conn1 = DbConfig.GetConnection())
                     {
-                        string quary = "INSERT INTO Hall (Hallno,HName,RoomType)" + "VALUES (@id, @name,@type)";
-                        using (SQLiteCommand cmd = new SQLiteCommand (quary,conn1))
+                        string quary = "INSERT INTO Halls (HName,RoomType)" + "VALUES (@name,@type)";
+                        using (SQLiteCommand cmd = new SQLiteCommand(quary, conn1))
                         {
-                            cmd.Parameters.AddWithValue("@id", time.HallNo);
+                            //cmd.Parameters.AddWithValue("@id", time.HallNo);
                             cmd.Parameters.AddWithValue("@name", time.Hall);
-                            cmd.Parameters.AddWithValue("@type",time.RoomType);
-                            cmd.ExecuteNonQuery ();
+                            cmd.Parameters.AddWithValue("@type", time.RoomType);
+                            cmd.ExecuteNonQuery();
                         }
                     }
                 }
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                MessageBox.Show("Error: " + ex.Message);
                 return false;
             }
         }
-        public List<string> GetAllCourseNames()
+            public List<string> GetAllCourseNames()
         {
             List<string> CourseNames = new List<string>();
 

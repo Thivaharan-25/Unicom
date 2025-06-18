@@ -15,9 +15,7 @@ namespace UnicomTicManagementSystem.Method
         public string Gender { get; set; }
         public string Role { get; set; }
         public string Course { get; set; }
-        public string subject1 { get; set; }
-        public string subject2 { get; set; }
-        public string Subject3 { get; set; }
+        
         public string UserCode { get; set; }
 
         public enum Roles

@@ -216,23 +216,25 @@ namespace UnicomTicManagementSystem.Controller
                 // Step 5: Insert into role-specific table
                 if (user.Role.ToLower() == "student")
                 {
-                    using (var cmd = new SQLiteCommand("INSERT INTO Students (StudentId, Name, Address, Gender) VALUES (@UserId, @Name, @Address, @Gender)", conn))
+                    using (var cmd = new SQLiteCommand("INSERT INTO Students (StudentId, Name, Address, Gender , Password) VALUES (@UserId, @Name, @Address, @Gender , @password)", conn))
                     {
                         cmd.Parameters.AddWithValue("@UserId", id);
                         cmd.Parameters.AddWithValue("@Name", user.username);
                         cmd.Parameters.AddWithValue("@Address", user.address);
                         cmd.Parameters.AddWithValue("@Gender", user.Gender);
+                        cmd.Parameters.AddWithValue("@password", user.password);
                         cmd.ExecuteNonQuery();
                     }
                 }
                 else if (user.Role.ToLower() == "lecturer")
                 {
-                    using (var cmd = new SQLiteCommand("INSERT INTO Lecturers (LecturerId, LName, LAddress, LGender) VALUES (@UserId, @Name, @Address, @Gender)", conn))
+                    using (var cmd = new SQLiteCommand("INSERT INTO Lecturers (LecturerId, LName, LAddress, LGender ,LPassword) VALUES (@UserId, @Name, @Address, @Gender ,@password)", conn))
                     {
                         cmd.Parameters.AddWithValue("@UserId", id);
                         cmd.Parameters.AddWithValue("@Name", user.username);
                         cmd.Parameters.AddWithValue("@Address", user.address);
                         cmd.Parameters.AddWithValue("@Gender", user.Gender);
+                        cmd.Parameters.AddWithValue("@password", user.password);
                         cmd.ExecuteNonQuery();
                     }
                 }

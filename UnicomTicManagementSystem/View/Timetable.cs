@@ -28,9 +28,19 @@ namespace UnicomTicManagementSystem.View
         {
             LoadCoursesIntoComboBox();
             LoadSubjectsIntoComboBox();
+            LoadLecturerIntoComboBox();
             lord_time();
 
 
+        }
+
+        private void LoadLecturerIntoComboBox()
+        {
+            // Call your controller method here
+            List<string> lecturer = Timec.GetAllLecturerNames(); // or SubjectController.GetAllSubjectNames();
+
+            c_lecturer.Items.Clear();
+            c_lecturer.Items.AddRange(lecturer.ToArray());
         }
         private void LoadCoursesIntoComboBox()
         {
@@ -62,6 +72,7 @@ namespace UnicomTicManagementSystem.View
                     c_time.Text = users.TimeSlot;
                     c_subject.Text = users.Subject;
                     t_hall.Text = users.Hall;
+                    c_course.Text = users.Course;
                     c_lecturer.Text = users.Lecturer;
                     c_roomtype.Text = users.RoomType;
                 }
@@ -103,6 +114,8 @@ namespace UnicomTicManagementSystem.View
             t_date.Text = "";
             c_time.Text = "";
             c_roomtype.Text = "";
+            c_course.Text = "";
+
 
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -129,13 +142,15 @@ namespace UnicomTicManagementSystem.View
                 DateOfWeek = t_date.Text.Trim(),
                 Hall = t_hall.Text.Trim(),
                 Lecturer = c_lecturer.Text.Trim(),
-                RoomType = c_roomtype.Text.Trim()
+                RoomType = c_roomtype.Text.Trim(),
+                Course = c_course.Text.Trim()
+
             };
 
             bool success = Timec.AddTime(time);
             if (success)
             {
-                MessageBox.Show("TimeTable added successfully.");
+
                 lord_time();
                 Clearinputs();
             }
@@ -157,7 +172,7 @@ namespace UnicomTicManagementSystem.View
 
         private void btn_update_Click(object sender, EventArgs e)
         {
-            if(selectedTimeId ==-1)
+            if (selectedTimeId == -1)
             {
                 return;
             }
@@ -174,7 +189,8 @@ namespace UnicomTicManagementSystem.View
                 DateOfWeek = t_date.Text.Trim(),
                 Hall = t_hall.Text.Trim(),
                 Lecturer = c_lecturer.Text.Trim(),
-                RoomType = c_roomtype.Text.Trim()
+                RoomType = c_roomtype.Text.Trim(),
+                Course = c_course.Text.Trim()
             };
             bool success = Timec.UpdateTime(time);
             if (success)
@@ -187,6 +203,11 @@ namespace UnicomTicManagementSystem.View
             {
                 MessageBox.Show("Failed Update");
             }
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

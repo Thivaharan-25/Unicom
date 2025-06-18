@@ -48,7 +48,7 @@
             admin_panel.Controls.Add(btn_exammain);
             admin_panel.Location = new Point(0, 0);
             admin_panel.Name = "admin_panel";
-            admin_panel.Size = new Size(276, 517);
+            admin_panel.Size = new Size(186, 490);
             admin_panel.TabIndex = 4;
             admin_panel.Paint += panel1_Paint;
             // 
@@ -105,7 +105,7 @@
             // 
             mainpanel.Location = new Point(127, 0);
             mainpanel.Name = "mainpanel";
-            mainpanel.Size = new Size(1114, 515);
+            mainpanel.Size = new Size(1021, 488);
             mainpanel.TabIndex = 5;
             mainpanel.Paint += mainpanel_Paint;
             // 
@@ -115,7 +115,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
             BackgroundImageLayout = ImageLayout.Center;
-            ClientSize = new Size(1239, 515);
+            ClientSize = new Size(1149, 488);
             Controls.Add(mainpanel);
             Controls.Add(admin_panel);
             FormBorderStyle = FormBorderStyle.SizableToolWindow;

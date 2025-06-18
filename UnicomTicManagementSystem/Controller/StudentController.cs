@@ -10,19 +10,19 @@ namespace UnicomTicManagementSystem.Controller
 {
     internal class StudentController
     {
-        public void Insertstudent (Student student)
-        {
+        //public void Insertstudent (Course student)
+        //{
 
-            using (var conn = DbConfig.GetConnection())
-            {
-                var cmd = conn.CreateCommand();
-                cmd.CommandText = "INTSERT INTO Students (Name,Password,Address,Gender  VALUES (@name ,@password,@addresss,@gender) ";
-                cmd.Parameters.AddWithValue("@name", student.Name);
-                cmd.Parameters.AddWithValue("@password", student.Password);
-                cmd.Parameters.AddWithValue("@address", student.Address);
-                cmd.Parameters.AddWithValue("@gender", student.Gender);
-            }
-        }
+        //    using (var conn = DbConfig.GetConnection())
+        //    {
+        //        var cmd = conn.CreateCommand();
+        //        cmd.CommandText = "INTSERT INTO Students (Name,Password,Address,Gender  VALUES (@name ,@password,@addresss,@gender) ";
+        //        cmd.Parameters.AddWithValue("@name", student.Name);
+        //        cmd.Parameters.AddWithValue("@password", student.Password);
+        //        cmd.Parameters.AddWithValue("@address", student.Address);
+        //        cmd.Parameters.AddWithValue("@gender", student.Gender);
+        //    }
+        //}
        
 
     }

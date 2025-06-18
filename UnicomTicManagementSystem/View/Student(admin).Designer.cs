@@ -39,15 +39,9 @@
             button2 = new Button();
             button3 = new Button();
             User_dgv = new DataGridView();
-            Subject1 = new ComboBox();
-            subject2 = new ComboBox();
-            subject3 = new ComboBox();
             textBox1 = new TextBox();
             comboBox4 = new ComboBox();
             label5 = new Label();
-            label6 = new Label();
-            label7 = new Label();
-            label8 = new Label();
             label4 = new Label();
             label9 = new Label();
             role = new ComboBox();
@@ -102,8 +96,8 @@
             // 
             // Course
             // 
+            Course.DropDownStyle = ComboBoxStyle.DropDownList;
             Course.FormattingEnabled = true;
-            Course.Items.AddRange(new object[] { "Mathematics", "Biology", "Arts", "Commerce", "Engineering Technology ", "Bio-system technology" });
             Course.Location = new Point(123, 239);
             Course.Name = "Course";
             Course.Size = new Size(145, 23);
@@ -112,8 +106,9 @@
             // 
             // btn_register
             // 
-            btn_register.BackColor = Color.DeepSkyBlue;
+            btn_register.BackColor = SystemColors.ActiveCaptionText;
             btn_register.Font = new Font("Century", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_register.ForeColor = SystemColors.ControlLightLight;
             btn_register.Location = new Point(283, 421);
             btn_register.Name = "btn_register";
             btn_register.Size = new Size(75, 23);
@@ -124,8 +119,9 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.FromArgb(255, 255, 128);
+            button1.BackColor = SystemColors.ActiveCaptionText;
             button1.Font = new Font("Century", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.ForeColor = SystemColors.ControlLightLight;
             button1.Location = new Point(193, 421);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
@@ -136,9 +132,9 @@
             // 
             // button2
             // 
-            button2.BackColor = Color.FromArgb(255, 128, 128);
+            button2.BackColor = SystemColors.ActiveCaptionText;
             button2.Font = new Font("Century", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.ForeColor = SystemColors.ActiveCaptionText;
+            button2.ForeColor = SystemColors.ControlLightLight;
             button2.Location = new Point(105, 421);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
@@ -149,8 +145,9 @@
             // 
             // button3
             // 
-            button3.BackColor = SystemColors.ButtonFace;
+            button3.BackColor = SystemColors.ActiveCaptionText;
             button3.Font = new Font("Century", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button3.ForeColor = SystemColors.ControlLightLight;
             button3.Location = new Point(12, 421);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
@@ -169,32 +166,6 @@
             User_dgv.CellContentClick += dataGridView1_CellContentClick;
             User_dgv.SelectionChanged += dgvStudents_SelectionChanged;
             // 
-            // Subject1
-            // 
-            Subject1.FormattingEnabled = true;
-            Subject1.Items.AddRange(new object[] { "Accounting", "BusinessStudies", "Finance", "Marketing", "Taxation", "Auditing", "Entrepreneurship", "Statistics", "Commercial Law", "History", "Geography", "Political Science", "Sociology", "Psychology", "Philosophy", "English Literature ", "Economics", "Arts", "Anthropology" });
-            Subject1.Location = new Point(123, 280);
-            Subject1.Name = "Subject1";
-            Subject1.Size = new Size(145, 23);
-            Subject1.TabIndex = 12;
-            Subject1.SelectedIndexChanged += Subject1_SelectedIndexChanged_1;
-            // 
-            // subject2
-            // 
-            subject2.FormattingEnabled = true;
-            subject2.Location = new Point(123, 324);
-            subject2.Name = "subject2";
-            subject2.Size = new Size(145, 23);
-            subject2.TabIndex = 13;
-            // 
-            // subject3
-            // 
-            subject3.FormattingEnabled = true;
-            subject3.Location = new Point(123, 365);
-            subject3.Name = "subject3";
-            subject3.Size = new Size(145, 23);
-            subject3.TabIndex = 14;
-            // 
             // textBox1
             // 
             textBox1.Location = new Point(123, 100);
@@ -205,9 +176,10 @@
             // 
             // comboBox4
             // 
+            comboBox4.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox4.FormattingEnabled = true;
             comboBox4.Items.AddRange(new object[] { "Male", "Female" });
-            comboBox4.Location = new Point(123, 204);
+            comboBox4.Location = new Point(123, 197);
             comboBox4.Name = "comboBox4";
             comboBox4.Size = new Size(145, 23);
             comboBox4.TabIndex = 17;
@@ -222,36 +194,6 @@
             label5.Size = new Size(55, 14);
             label5.TabIndex = 18;
             label5.Text = "Gender";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(25, 283);
-            label6.Name = "label6";
-            label6.Size = new Size(89, 14);
-            label6.TabIndex = 19;
-            label6.Text = "Subject - 01";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(25, 368);
-            label7.Name = "label7";
-            label7.Size = new Size(89, 14);
-            label7.TabIndex = 20;
-            label7.Text = "Subject - 03";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(25, 327);
-            label8.Name = "label8";
-            label8.Size = new Size(89, 14);
-            label8.TabIndex = 21;
-            label8.Text = "Subject - 02";
             // 
             // label4
             // 
@@ -275,9 +217,10 @@
             // 
             // role
             // 
+            role.DropDownStyle = ComboBoxStyle.DropDownList;
             role.FormattingEnabled = true;
             role.Items.AddRange(new object[] { "Admin", "Lecturer", "Staff", "Student" });
-            role.Location = new Point(123, 152);
+            role.Location = new Point(123, 149);
             role.Name = "role";
             role.Size = new Size(145, 23);
             role.TabIndex = 24;
@@ -291,15 +234,9 @@
             Controls.Add(role);
             Controls.Add(label9);
             Controls.Add(label4);
-            Controls.Add(label8);
-            Controls.Add(label7);
-            Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(comboBox4);
             Controls.Add(textBox1);
-            Controls.Add(subject3);
-            Controls.Add(subject2);
-            Controls.Add(Subject1);
             Controls.Add(User_dgv);
             Controls.Add(button3);
             Controls.Add(button2);
@@ -333,15 +270,9 @@
         private Button button1;
         private Button button2;
         private Button button3;
-        private ComboBox Subject1;
-        private ComboBox subject2;
-        private ComboBox subject3;
         private TextBox textBox1;
         private ComboBox comboBox4;
         private Label label5;
-        private Label label6;
-        private Label label7;
-        private Label label8;
         private Label label4;
         private Label label9;
         private ComboBox role;

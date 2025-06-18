@@ -63,6 +63,16 @@ namespace UnicomTicManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Clock_timer_logo_by_Mansel_Brist_23 {
+            get {
+                object obj = ResourceManager.GetObject("Clock-timer-logo-by-Mansel-Brist-23", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap tic {
             get {
                 object obj = ResourceManager.GetObject("tic", resourceCulture);

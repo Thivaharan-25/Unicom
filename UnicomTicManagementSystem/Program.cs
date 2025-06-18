@@ -18,7 +18,7 @@ namespace UnicomTicManagementSystem
             Application.Run(new Unicom());
             DatabaseInitializer.CreateTable();
 
-            Application.Run(new Select());
+            
 
 
         }

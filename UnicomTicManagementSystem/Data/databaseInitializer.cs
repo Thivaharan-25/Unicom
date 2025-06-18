@@ -28,10 +28,10 @@ namespace UnicomTicManagementSystem.Data
                     UsersRole TEXT NOT NULL
                 );
 
-                CREATE TABLE IF NOT EXISTS Courses (
+                CREATE TABLE IF NOT EXISTS Courses(
                     CourseID INTEGER PRIMARY KEY AUTOINCREMENT,
-                    CName TEXT NOT NULL,
-                    CPassword TEXT NOT NULL
+                    CName TEXT NOT NULL
+                  
                 );
 
                 CREATE TABLE IF NOT EXISTS Subject (
@@ -53,16 +53,27 @@ namespace UnicomTicManagementSystem.Data
                     LecturerId INTEGER PRIMARY KEY AUTOINCREMENT,
                     LName TEXT NOT NULL,
                     LPassword TEXT NOT NULL,
-                    LGender TEXT NOT NULL
+                    LGender TEXT NOT NULL,
+                    LAddress TEXT NOT NULL,
+                    CourseId INTEGER,
+                    FOREIGN KEY (CourseId) REFERENCES Courses(CourseID)
                 );
 
-                CREATE TABLE IF NOT EXISTS Staff (
-                    StaffId INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Name TEXT NOT NULL,
-                    Password TEXT NOT NULL,
-                    Address TEXT,
-                    Gender TEXT NOT NULL
+                CREATE TABLE IF NOT EXISTS TimeTable (
+                    TimetableID INTEGER PRIMARY KEY AUTOINCREMENT,
+                    DayOfWeek VARCHAR(10), 
+                    TimeSlot VARCHAR(20), 
+                    CourseID INTEGER,
+                    SubjectId INTEGER,
+                    LecturerId INTEGER,
+                    HallNo INTEGER,
+                    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID),
+                    FOREIGN KEY (SubjectId) REFERENCES Subject(SubjectId),
+                    FOREIGN KEY (LecturerId) REFERENCES Lecturer(LecturerId),
+                    FOREIGN KEY (HallNo) REFERENCES Halls(HallNo)
                 );
+
+                
 
                 CREATE TABLE IF NOT EXISTS Admin (
                     AdminId INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -72,7 +83,8 @@ namespace UnicomTicManagementSystem.Data
                     Gender TEXT NOT NULL
                 );
 
-                CREATE TABLE IF NOT EXISTS HALLS (HallNo INTEGER PRIMARY KEY,
+                CREATE TABLE IF NOT EXISTS Halls (HallNo INTEGER PRIMARY KEY,
+                    RoomType TEXT NOT NULL,
                     HName TEXT NOT NULL 
                 );
             ";

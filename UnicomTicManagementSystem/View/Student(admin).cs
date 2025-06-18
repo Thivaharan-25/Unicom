@@ -18,25 +18,15 @@ namespace UnicomTicManagementSystem.View
     public partial class student : Form
 
     {
-        private List<string> GetSubjectsByCourse(string course)
-        {
-            return subject
-                .Where(kvp => kvp.Value.Any(c => c.Trim() == course.Trim()))  // trim to handle spaces
-                .Select(kvp => kvp.Key)
-                .ToList();
-        }
+        CourseController coursec = new CourseController();
+       
 
 
         private Dictionary<string, List<string>> subject = new Dictionary<string, List<string>>()
-    {
-        { "Commerce", new List<string> { "Accounting" , "Economics","BusinessStudies", "Finance" , " Marketing" ,"Taxation" , "Auditing" , "Entrepreneurship" , "Statistics" , "Commercial Law" } },
-        { "Mathematic", new List<string> { "Mathematics", "Chemistry", "Physics" } },
-        { "Biology", new List<string> { "Biology", "Chemistry", "Physics" } },
-        { "Arts", new List<string> { "History" ,"Geography" ,"Political Science","Sociology", "Psychology","Philosophy"," English Literature" , "Economics", "Arts" , "Anthropology" } },
-        { "Bio-system technology", new List<string> { "Biology", "Chemistry", "Physics" } },
-        { "Engineering Technology", new List<string> { "Biology", "Chemistry", "Physics" } }
+        {
+   
 
-    };
+        };
 
 
         private int selectedStudentId = -1;
@@ -45,25 +35,41 @@ namespace UnicomTicManagementSystem.View
         {
             InitializeComponent();
             LoadStudents();
+            LoadCourses();
+            
+           
+            // Assuming you open the Course form somewhere like this:
+            Course course = new Course();
+            course.CourseAdded += CourseForm_CourseAdded;
 
-            Course.DataSource = new BindingSource(subject.Keys.ToList(), null);
-            Course.SelectedIndexChanged += Course_SelectedIndexChanged;
-            Subject1.SelectedIndexChanged += Subject1_SelectedIndexChanged;
-
-            // Initialize Course based on first selection
-            if (Subject1.Items.Count > 0)
-            {
-                string selected = Subject1.SelectedItem as string;
-                if (selected != null && subject.ContainsKey(selected))
-                {
-                    Course.DataSource = new BindingSource(subject[selected], null);
-                }
-            }
-
+            // Setup ComboBoxes, events, etc...
         }
+
+        private void CourseForm_CourseAdded(CourseName newCourse)
+        {
+            // Reload courses from DB, or just add the new course directly:
+            LoadCourses();
+
+            // Optionally, also update subjects dictionary if needed
+            if (!subject.ContainsKey(newCourse.Course))
+            {
+                subject[newCourse.Course] = new List<string> { newCourse.Subject };
+            }
+            else if (!subject[newCourse.Course].Contains(newCourse.Subject))
+            {
+                subject[newCourse.Course].Add(newCourse.Subject);
+            }
+        }
+        private void LoadCourses()
+        {
+            var courses = coursec.GetAllCourse().Select(c => c.Course).Distinct().ToList();
+            Course.DataSource = null;
+            Course.DataSource = new BindingSource(courses, null);
+        }
+
         private void dgvStudents_SelectionChanged(object sender, EventArgs e)
         {
-            if (User_dgv.SelectedRows.Count > 0)
+           if (User_dgv.SelectedRows.Count > 0)
             {
                 var row = User_dgv.SelectedRows[0];
                 Users users = row.DataBoundItem as Users;
@@ -75,14 +81,21 @@ namespace UnicomTicManagementSystem.View
                     textBox1.Text = users.address;
                     comboBox4.Text = users.Gender;
                     role.Text = users.Role;
-                    Course.Text = users.Course;
-                    subject2.Text = users.subject2;
-                    Subject1.Text = users.subject1;
-                    subject3.Text = users.Subject3;
 
-                    UpdateRoleComboBoxState(); 
+                    // Set course
+                    int courseIndex = Course.FindStringExact(users.Course);
+                    if (courseIndex != -1)
+                        Course.SelectedIndex = courseIndex;
+
+                    // Trigger population of subjects
+                    Course_SelectedIndexChanged(null, null);
+
+                    
+
+                    UpdateRoleComboBoxState();
                 }
             }
+
             else
             {
                 ClearInputs();
@@ -100,9 +113,7 @@ namespace UnicomTicManagementSystem.View
             selectedStudentId = -1;
             User_dgv.Columns["password"].Visible = false;
             User_dgv.Columns["Course"].Visible = false;
-            User_dgv.Columns["subject2"].Visible = false;
-            User_dgv.Columns["subject3"].Visible = false;
-            User_dgv.Columns["Subject1"].Visible = false;
+          
 
         }
         private void ClearInputs()
@@ -113,9 +124,7 @@ namespace UnicomTicManagementSystem.View
             comboBox4.Text = "";
             role.Text = "";
             Course.Text = "";
-            subject2.Text = "";
-            Subject1.Text = "";
-            subject3.Text = "";
+           
 
             role.Enabled = true;
         }
@@ -129,20 +138,32 @@ namespace UnicomTicManagementSystem.View
         }
         private void btn_register_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(T_uname.Text) || string.IsNullOrWhiteSpace(T_password.Text) || string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(comboBox4.Text) || string.IsNullOrWhiteSpace(role.Text) )
+            if (string.IsNullOrWhiteSpace(T_uname.Text) || string.IsNullOrWhiteSpace(T_password.Text) ||
+                string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(comboBox4.Text) ||
+                string.IsNullOrWhiteSpace(role.Text))
             {
-                MessageBox.Show("Please enter both Name and Address.");
+                MessageBox.Show("Please fill in all required fields.");
                 return;
             }
+
+            // Construct the user object
             Users users = new Users
             {
-                username = T_uname.Text, password = T_password.Text,
-                Role = role.Text,address = textBox1.Text, Gender =comboBox4.Text
+                username = T_uname.Text,
+                password = T_password.Text,
+                Role = role.Text,
+                address = textBox1.Text,
+                Gender = comboBox4.Text,
+                Course = (role.Text.ToLower() == "student") ? Course.SelectedItem?.ToString() ?? "" : ""
             };
+
+            // Add the user through the controller (which will now handle role-specific inserts)
             adminc.AddUser(users);
-            MessageBox.Show("Registation Successfull");
+
+            MessageBox.Show("Registration Successful");
             LoadStudents();
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (selectedStudentId == -1)
@@ -157,11 +178,15 @@ namespace UnicomTicManagementSystem.View
             }
             Users users = new Users
             {
+                Id = selectedStudentId,
                 username = T_uname.Text,
                 password = T_password.Text,
                 Role = role.Text,
                 address = textBox1.Text,
-                Gender = comboBox4.Text
+                Gender = comboBox4.Text,
+                Course = Course.SelectedItem?.ToString() ?? "",
+               
+            
             };
             adminc.UpdateUser(users);
            
@@ -229,17 +254,30 @@ namespace UnicomTicManagementSystem.View
         {
             string selectedRole = role.SelectedItem?.ToString() ?? "";
 
-            bool isStaff = selectedRole.Equals("Staff", StringComparison.OrdinalIgnoreCase);
-
-            Course.Visible = !isStaff;
-            Subject1.Visible = !isStaff;
-            subject2.Visible = !isStaff;
-            subject3.Visible = !isStaff;
-            label7.Visible = !isStaff;
-            label8.Visible = !isStaff;
-            label6.Visible = !isStaff;
-            label3.Visible = !isStaff;
+            if (selectedRole.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+            {
+                Course.Visible = false;
+               
+                label3.Visible = false;
+                
+            }
+            else if (selectedRole.Equals("Staff", StringComparison.OrdinalIgnoreCase))
+            {
+                Course.Visible = false;
+               
+                label3.Visible = false;
+               
+            }
+            else
+            {
+                // Show all for students or other roles
+                Course.Visible = true;
+                
+                label3.Visible = true;
+               
+            }
         }
+
         private void Course_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedCourse = Course.SelectedItem as string;
@@ -248,16 +286,7 @@ namespace UnicomTicManagementSystem.View
             {
                 List<string> availableSubjects = subject[selectedCourse];
 
-                // Optional: You can choose how to distribute them across 3 subject boxes
-                Subject1.DataSource = new BindingSource(availableSubjects.ToList(), null);
-                subject2.DataSource = new BindingSource(availableSubjects.ToList(), null);
-                subject3.DataSource = new BindingSource(availableSubjects.ToList(), null);
-            }
-            else
-            {
-                Subject1.DataSource = null;
-                subject2.DataSource = null;
-                subject3.DataSource = null;
+           
             }
         }
 

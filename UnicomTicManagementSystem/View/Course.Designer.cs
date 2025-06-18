@@ -29,24 +29,27 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Course));
-            dataGridView1 = new DataGridView();
+            dgv_course = new DataGridView();
             label1 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            t_course = new TextBox();
+            t_subject = new TextBox();
             label2 = new Label();
             pictureBox1 = new PictureBox();
-            button1 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            btn_add = new Button();
+            btn_update = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgv_course).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dgv_course
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(407, 12);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(580, 534);
-            dataGridView1.TabIndex = 0;
+            dgv_course.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_course.Location = new Point(407, 12);
+            dgv_course.Name = "dgv_course";
+            dgv_course.Size = new Size(340, 420);
+            dgv_course.TabIndex = 0;
+            dgv_course.CellContentClick += dataGridView1_CellContentClick;
+            dgv_course.SelectionChanged += dgv_course_SelectionChanged;
             // 
             // label1
             // 
@@ -58,19 +61,19 @@
             label1.TabIndex = 1;
             label1.Text = "Course Name";
             // 
-            // textBox1
+            // t_course
             // 
-            textBox1.Location = new Point(117, 124);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(248, 23);
-            textBox1.TabIndex = 2;
+            t_course.Location = new Point(117, 124);
+            t_course.Name = "t_course";
+            t_course.Size = new Size(248, 23);
+            t_course.TabIndex = 2;
             // 
-            // textBox2
+            // t_subject
             // 
-            textBox2.Location = new Point(114, 176);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(251, 23);
-            textBox2.TabIndex = 3;
+            t_subject.Location = new Point(114, 176);
+            t_subject.Name = "t_subject";
+            t_subject.Size = new Size(251, 23);
+            t_subject.TabIndex = 3;
             // 
             // label2
             // 
@@ -90,33 +93,50 @@
             pictureBox1.Size = new Size(200, 126);
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click_1;
             // 
-            // button1
+            // btn_add
             // 
-            button1.Location = new Point(36, 266);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 6;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            btn_add.BackColor = SystemColors.ActiveCaptionText;
+            btn_add.ForeColor = SystemColors.ControlLightLight;
+            btn_add.Location = new Point(143, 266);
+            btn_add.Name = "btn_add";
+            btn_add.Size = new Size(75, 23);
+            btn_add.TabIndex = 6;
+            btn_add.Text = "ADD";
+            btn_add.UseVisualStyleBackColor = false;
+            btn_add.Click += btn_add_Click;
+            // 
+            // btn_update
+            // 
+            btn_update.BackColor = SystemColors.ActiveCaptionText;
+            btn_update.ForeColor = SystemColors.ControlLightLight;
+            btn_update.Location = new Point(267, 266);
+            btn_update.Name = "btn_update";
+            btn_update.Size = new Size(75, 23);
+            btn_update.TabIndex = 7;
+            btn_update.Text = "UPDATE";
+            btn_update.UseVisualStyleBackColor = false;
+            btn_update.Click += btn_update_Click;
             // 
             // Course
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(1027, 574);
-            Controls.Add(button1);
+            ClientSize = new Size(831, 505);
+            Controls.Add(btn_update);
+            Controls.Add(btn_add);
             Controls.Add(pictureBox1);
             Controls.Add(label2);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(t_subject);
+            Controls.Add(t_course);
             Controls.Add(label1);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgv_course);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Course";
             Text = "Course";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_course).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -124,12 +144,13 @@
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView dgv_course;
         private Label label1;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox t_course;
+        private TextBox t_subject;
         private Label label2;
         private PictureBox pictureBox1;
-        private Button button1;
+        private Button btn_add;
+        private Button btn_update;
     }
 }

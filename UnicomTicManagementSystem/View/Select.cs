@@ -12,6 +12,8 @@ namespace UnicomTicManagementSystem.View
 {
     public partial class Select : Form
     {
+        private Course courseForm;
+        private student studentForm = new student();
         public Select()
         {
             InitializeComponent();
@@ -73,7 +75,11 @@ namespace UnicomTicManagementSystem.View
 
         private void btn_course_Click(object sender, EventArgs e)
         {
-            LoadForm(new Course());
+         
+        
+          
+        
+        LoadForm(new Course());
         
         }
 

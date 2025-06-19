@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace UnicomTicManagementSystem.Method
 {
-    internal class Lecturer
+    internal class Mark
     {
-        public int LecturerId { get; set; } 
+        public int Id { get; set; } 
         public string Name { get; set; }
-        public string Password { get; set; }
+        public string StudentCode { get; set; }
+        public string Subject { get; set; }
     }
 }

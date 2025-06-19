@@ -19,12 +19,12 @@ namespace UnicomTicManagementSystem.View
 
     {
         CourseController coursec = new CourseController();
-       
+
 
 
         private Dictionary<string, List<string>> subject = new Dictionary<string, List<string>>()
         {
-   
+
 
         };
 
@@ -36,8 +36,8 @@ namespace UnicomTicManagementSystem.View
             InitializeComponent();
             LoadStudents();
             LoadCourses();
-            
-           
+
+
             // Assuming you open the Course form somewhere like this:
             Course course = new Course();
             course.CourseAdded += CourseForm_CourseAdded;
@@ -69,7 +69,7 @@ namespace UnicomTicManagementSystem.View
 
         private void dgvStudents_SelectionChanged(object sender, EventArgs e)
         {
-           if (User_dgv.SelectedRows.Count > 0)
+            if (User_dgv.SelectedRows.Count > 0)
             {
                 var row = User_dgv.SelectedRows[0];
                 Users users = row.DataBoundItem as Users;
@@ -90,7 +90,7 @@ namespace UnicomTicManagementSystem.View
                     // Trigger population of subjects
                     Course_SelectedIndexChanged(null, null);
 
-                    
+
 
                     UpdateRoleComboBoxState();
                 }
@@ -100,7 +100,7 @@ namespace UnicomTicManagementSystem.View
             {
                 ClearInputs();
                 selectedStudentId = -1;
-                UpdateRoleComboBoxState(); 
+                UpdateRoleComboBoxState();
             }
         }
 
@@ -113,7 +113,7 @@ namespace UnicomTicManagementSystem.View
             selectedStudentId = -1;
             User_dgv.Columns["password"].Visible = false;
             User_dgv.Columns["Course"].Visible = false;
-          
+
 
         }
         private void ClearInputs()
@@ -124,7 +124,7 @@ namespace UnicomTicManagementSystem.View
             comboBox4.Text = "";
             role.Text = "";
             Course.Text = "";
-           
+
 
             role.Enabled = true;
         }
@@ -168,7 +168,7 @@ namespace UnicomTicManagementSystem.View
         {
             if (selectedStudentId == -1)
             {
-              
+
                 return;
             }
             if (string.IsNullOrWhiteSpace(T_uname.Text) || string.IsNullOrWhiteSpace(T_password.Text) || string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(comboBox4.Text) || string.IsNullOrWhiteSpace(role.Text))
@@ -185,11 +185,11 @@ namespace UnicomTicManagementSystem.View
                 address = textBox1.Text,
                 Gender = comboBox4.Text,
                 Course = Course.SelectedItem?.ToString() ?? "",
-               
-            
+
+
             };
             adminc.UpdateUser(users);
-           
+
             MessageBox.Show("Update Successfull");
             LoadStudents();
         }
@@ -257,24 +257,24 @@ namespace UnicomTicManagementSystem.View
             if (selectedRole.Equals("Admin", StringComparison.OrdinalIgnoreCase))
             {
                 Course.Visible = false;
-               
+
                 label3.Visible = false;
-                
+
             }
             else if (selectedRole.Equals("Staff", StringComparison.OrdinalIgnoreCase))
             {
                 Course.Visible = false;
-               
+
                 label3.Visible = false;
-               
+
             }
             else
             {
                 // Show all for students or other roles
                 Course.Visible = true;
-                
+
                 label3.Visible = true;
-               
+
             }
         }
 
@@ -286,7 +286,7 @@ namespace UnicomTicManagementSystem.View
             {
                 List<string> availableSubjects = subject[selectedCourse];
 
-           
+
             }
         }
 
@@ -323,6 +323,11 @@ namespace UnicomTicManagementSystem.View
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

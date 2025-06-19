@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            c_time = new ComboBox();
             label1 = new Label();
             label2 = new Label();
             dgv_time = new DataGridView();
@@ -47,19 +46,11 @@
             label7 = new Label();
             c_roomtype = new ComboBox();
             t_date = new DateTimePicker();
+            d_time = new DateTimePicker();
+            d_time2 = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)dgv_time).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // c_time
-            // 
-            c_time.FormattingEnabled = true;
-            c_time.Items.AddRange(new object[] { "7:00 AM - 8:00 AM", "8;00 AM - 9:00 AM" });
-            c_time.Location = new Point(96, 175);
-            c_time.Name = "c_time";
-            c_time.Size = new Size(148, 23);
-            c_time.TabIndex = 6;
-            c_time.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -83,6 +74,7 @@
             // 
             // dgv_time
             // 
+            dgv_time.BackgroundColor = SystemColors.ControlLightLight;
             dgv_time.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_time.Location = new Point(407, 27);
             dgv_time.Name = "dgv_time";
@@ -202,6 +194,7 @@
             c_course.Name = "c_course";
             c_course.Size = new Size(148, 23);
             c_course.TabIndex = 20;
+            c_course.SelectedIndexChanged += c_course_SelectedIndexChanged;
             // 
             // label6
             // 
@@ -241,12 +234,33 @@
             t_date.Size = new Size(200, 23);
             t_date.TabIndex = 24;
             // 
+            // d_time
+            // 
+            d_time.Format = DateTimePickerFormat.Time;
+            d_time.Location = new Point(96, 176);
+            d_time.Name = "d_time";
+            d_time.ShowUpDown = true;
+            d_time.Size = new Size(95, 23);
+            d_time.TabIndex = 25;
+            d_time.ValueChanged += dateTimePicker1_ValueChanged;
+            // 
+            // d_time2
+            // 
+            d_time2.Format = DateTimePickerFormat.Time;
+            d_time2.Location = new Point(201, 176);
+            d_time2.Name = "d_time2";
+            d_time2.ShowUpDown = true;
+            d_time2.Size = new Size(95, 23);
+            d_time2.TabIndex = 26;
+            // 
             // Timetable
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(989, 553);
+            Controls.Add(d_time2);
+            Controls.Add(d_time);
             Controls.Add(t_date);
             Controls.Add(c_roomtype);
             Controls.Add(label7);
@@ -265,7 +279,6 @@
             Controls.Add(dgv_time);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(c_time);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Timetable";
             Text = "Timetable";
@@ -277,7 +290,6 @@
         }
 
         #endregion
-        private ComboBox c_time;
         private Label label1;
         private Label label2;
         private DataGridView dgv_time;
@@ -296,5 +308,7 @@
         private Label label7;
         private ComboBox c_roomtype;
         private DateTimePicker t_date;
+        private DateTimePicker d_time;
+        private DateTimePicker d_time2;
     }
 }

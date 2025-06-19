@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(student));
             T_uname = new TextBox();
             label1 = new Label();
             label2 = new Label();
@@ -45,12 +46,14 @@
             label4 = new Label();
             label9 = new Label();
             role = new ComboBox();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)User_dgv).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // T_uname
             // 
-            T_uname.Location = new Point(123, 24);
+            T_uname.Location = new Point(123, 162);
             T_uname.Name = "T_uname";
             T_uname.Size = new Size(185, 23);
             T_uname.TabIndex = 0;
@@ -60,17 +63,18 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(25, 27);
+            label1.Location = new Point(29, 165);
             label1.Name = "label1";
             label1.Size = new Size(76, 14);
             label1.TabIndex = 1;
             label1.Text = "UserName";
+            label1.Click += label1_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(25, 64);
+            label2.Location = new Point(29, 203);
             label2.Name = "label2";
             label2.Size = new Size(72, 14);
             label2.TabIndex = 2;
@@ -78,7 +82,7 @@
             // 
             // T_password
             // 
-            T_password.Location = new Point(123, 61);
+            T_password.Location = new Point(123, 200);
             T_password.Name = "T_password";
             T_password.Size = new Size(185, 23);
             T_password.TabIndex = 3;
@@ -88,7 +92,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(25, 242);
+            label3.Location = new Point(25, 362);
             label3.Name = "label3";
             label3.Size = new Size(53, 14);
             label3.TabIndex = 4;
@@ -98,7 +102,7 @@
             // 
             Course.DropDownStyle = ComboBoxStyle.DropDownList;
             Course.FormattingEnabled = true;
-            Course.Location = new Point(123, 239);
+            Course.Location = new Point(123, 359);
             Course.Name = "Course";
             Course.Size = new Size(145, 23);
             Course.TabIndex = 5;
@@ -109,7 +113,7 @@
             btn_register.BackColor = SystemColors.ActiveCaptionText;
             btn_register.Font = new Font("Century", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_register.ForeColor = SystemColors.ControlLightLight;
-            btn_register.Location = new Point(283, 421);
+            btn_register.Location = new Point(283, 434);
             btn_register.Name = "btn_register";
             btn_register.Size = new Size(75, 23);
             btn_register.TabIndex = 7;
@@ -122,7 +126,7 @@
             button1.BackColor = SystemColors.ActiveCaptionText;
             button1.Font = new Font("Century", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = SystemColors.ControlLightLight;
-            button1.Location = new Point(193, 421);
+            button1.Location = new Point(202, 434);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 8;
@@ -135,7 +139,7 @@
             button2.BackColor = SystemColors.ActiveCaptionText;
             button2.Font = new Font("Century", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button2.ForeColor = SystemColors.ControlLightLight;
-            button2.Location = new Point(105, 421);
+            button2.Location = new Point(112, 434);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 9;
@@ -148,7 +152,7 @@
             button3.BackColor = SystemColors.ActiveCaptionText;
             button3.Font = new Font("Century", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button3.ForeColor = SystemColors.ControlLightLight;
-            button3.Location = new Point(12, 421);
+            button3.Location = new Point(10, 434);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 10;
@@ -158,17 +162,18 @@
             // 
             // User_dgv
             // 
+            User_dgv.BackgroundColor = SystemColors.ControlLightLight;
             User_dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             User_dgv.Location = new Point(383, 38);
             User_dgv.Name = "User_dgv";
-            User_dgv.Size = new Size(630, 406);
+            User_dgv.Size = new Size(630, 419);
             User_dgv.TabIndex = 11;
             User_dgv.CellContentClick += dataGridView1_CellContentClick;
             User_dgv.SelectionChanged += dgvStudents_SelectionChanged;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(123, 100);
+            textBox1.Location = new Point(123, 237);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(185, 23);
             textBox1.TabIndex = 16;
@@ -179,7 +184,7 @@
             comboBox4.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox4.FormattingEnabled = true;
             comboBox4.Items.AddRange(new object[] { "Male", "Female" });
-            comboBox4.Location = new Point(123, 197);
+            comboBox4.Location = new Point(123, 314);
             comboBox4.Name = "comboBox4";
             comboBox4.Size = new Size(145, 23);
             comboBox4.TabIndex = 17;
@@ -189,7 +194,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(25, 200);
+            label5.Location = new Point(25, 323);
             label5.Name = "label5";
             label5.Size = new Size(55, 14);
             label5.TabIndex = 18;
@@ -199,7 +204,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(27, 103);
+            label4.Location = new Point(25, 240);
             label4.Name = "label4";
             label4.Size = new Size(60, 14);
             label4.TabIndex = 22;
@@ -209,7 +214,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(27, 152);
+            label9.Location = new Point(25, 281);
             label9.Name = "label9";
             label9.Size = new Size(36, 14);
             label9.TabIndex = 23;
@@ -220,17 +225,28 @@
             role.DropDownStyle = ComboBoxStyle.DropDownList;
             role.FormattingEnabled = true;
             role.Items.AddRange(new object[] { "Admin", "Lecturer", "Staff", "Student" });
-            role.Location = new Point(123, 149);
+            role.Location = new Point(123, 272);
             role.Name = "role";
             role.Size = new Size(145, 23);
             role.TabIndex = 24;
             role.SelectedIndexChanged += comboBox5_SelectedIndexChanged;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(70, -3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(151, 145);
+            pictureBox1.TabIndex = 25;
+            pictureBox1.TabStop = false;
+            // 
             // student
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(1058, 518);
+            Controls.Add(pictureBox1);
             Controls.Add(role);
             Controls.Add(label9);
             Controls.Add(label4);
@@ -253,6 +269,7 @@
             Text = "ad_StudentMenu";
             Load += AddUsers_Load;
             ((System.ComponentModel.ISupportInitialize)User_dgv).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -276,5 +293,6 @@
         private Label label4;
         private Label label9;
         private ComboBox role;
+        private PictureBox pictureBox1;
     }
 }

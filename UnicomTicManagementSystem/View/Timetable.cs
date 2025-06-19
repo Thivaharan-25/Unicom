@@ -22,15 +22,18 @@ namespace UnicomTicManagementSystem.View
         public Timetable()
         {
             InitializeComponent();
+            Timetable_load();
         }
-
-        private void Timetable_Load(object sender, EventArgs e)
+        private void Timetable_load()
         {
             LoadCoursesIntoComboBox();
             LoadSubjectsIntoComboBox();
             LoadLecturerIntoComboBox();
             lord_time();
-
+        }
+        private void Timetable_Load(object sender, EventArgs e)
+        {
+           
 
         }
 
@@ -69,7 +72,7 @@ namespace UnicomTicManagementSystem.View
                 {
                     selectedTimeId = users.Id;
                     t_date.Text = users.DateOfWeek;
-                    c_time.Text = users.TimeSlot;
+                    d_time.Text = users.TimeSlot;
                     c_subject.Text = users.Subject;
                     t_hall.Text = users.Hall;
                     c_course.Text = users.Course;
@@ -112,7 +115,7 @@ namespace UnicomTicManagementSystem.View
             c_subject.Text = "";
             t_hall.Text = "";
             t_date.Text = "";
-            c_time.Text = "";
+            d_time.Text = "";
             c_roomtype.Text = "";
             c_course.Text = "";
 
@@ -134,10 +137,19 @@ namespace UnicomTicManagementSystem.View
         }
 
         private void btn_add_Click(object sender, EventArgs e)
+
         {
+            var start = d_time.Value.ToString("hh:mm tt");
+            var end = d_time2.Value.ToString("hh:mm tt");
+            var timeRange = $"{start} - {end}";
+            if (d_time2.Value <= d_time.Value)
+            {
+                MessageBox.Show("End time must be later than start time.");
+                return;
+            }
             TimeTable time = new TimeTable
             {
-                TimeSlot = c_time.Text.Trim(),
+                TimeSlot = timeRange,
                 Subject = c_subject.Text.Trim(),
                 DateOfWeek = t_date.Text.Trim(),
                 Hall = t_hall.Text.Trim(),
@@ -154,6 +166,7 @@ namespace UnicomTicManagementSystem.View
                 lord_time();
                 Clearinputs();
             }
+
             else
             {
                 MessageBox.Show("Failed to add TimeTable.");
@@ -176,15 +189,25 @@ namespace UnicomTicManagementSystem.View
             {
                 return;
             }
-            if (string.IsNullOrWhiteSpace(c_time.Text) || string.IsNullOrWhiteSpace(c_subject.Text) || string.IsNullOrWhiteSpace(t_date.Text) || string.IsNullOrWhiteSpace(c_course.Text) || string.IsNullOrWhiteSpace(c_roomtype.Text) || string.IsNullOrWhiteSpace(t_hall.Text) || string.IsNullOrWhiteSpace(c_lecturer.Text))
+            if (string.IsNullOrWhiteSpace(d_time.Text) || string.IsNullOrWhiteSpace(c_subject.Text) || string.IsNullOrWhiteSpace(t_date.Text) || string.IsNullOrWhiteSpace(c_course.Text) || string.IsNullOrWhiteSpace(c_roomtype.Text) || string.IsNullOrWhiteSpace(t_hall.Text) || string.IsNullOrWhiteSpace(c_lecturer.Text))
             {
                 MessageBox.Show("incomplete Input");
                 return;
             }
+
+            var start = d_time.Value.ToString("hh:mm tt");
+            var end = d_time2.Value.ToString("hh:mm tt");
+            var timeRange = $"{start} - {end}";
+            if (d_time2.Value <= d_time.Value)
+            {
+                MessageBox.Show("End time must be later than start time.");
+                return;
+            }
+
             TimeTable time = new TimeTable
             {
                 Id = selectedTimeId,
-                TimeSlot = c_time.Text.Trim(),
+                TimeSlot = timeRange,
                 Subject = c_subject.Text.Trim(),
                 DateOfWeek = t_date.Text.Trim(),
                 Hall = t_hall.Text.Trim(),
@@ -199,6 +222,7 @@ namespace UnicomTicManagementSystem.View
                 lord_time();
                 Clearinputs();
             }
+
             else
             {
                 MessageBox.Show("Failed Update");
@@ -207,7 +231,29 @@ namespace UnicomTicManagementSystem.View
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
+            if (selectedTimeId == -1)
+            {
+                MessageBox.Show("Please select to delete.");
+                return;
+            }
 
+            var confirmResult = MessageBox.Show("Are you sure to delete this ?", "Confirm Delete", MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                Timec.DeleteTime(selectedTimeId);
+                MessageBox.Show("User Deleted Successfully");
+                lord_time();
+            }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void c_course_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedSubject = c_course.SelectedItem.ToString();
         }
     }
 }

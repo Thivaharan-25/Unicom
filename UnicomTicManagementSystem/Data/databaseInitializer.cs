@@ -46,7 +46,9 @@ namespace UnicomTicManagementSystem.Data
                     Name TEXT NOT NULL,
                     Password TEXT NOT NULL,
                     Address TEXT,
-                    Gender TEXT NOT NULL
+                    Gender TEXT NOT NULL,
+                    UsersId INTEGER,
+                    FOREIGN KEY (UsersId) REFERENCES Users(UsersId)
                 );
 
                 CREATE TABLE IF NOT EXISTS Lecturers (
@@ -56,6 +58,8 @@ namespace UnicomTicManagementSystem.Data
                     LGender TEXT NOT NULL,
                     LAddress TEXT NOT NULL,
                     CourseId INTEGER,
+                    UsersId INTEGER,
+                    FOREIGN KEY (UsersId) REFERENCES Users(UsersId),
                     FOREIGN KEY (CourseId) REFERENCES Courses(CourseID)
                 );
 
@@ -75,17 +79,31 @@ namespace UnicomTicManagementSystem.Data
 
                 
 
-                CREATE TABLE IF NOT EXISTS Admin (
-                    AdminId INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Name TEXT NOT NULL,
-                    Password TEXT NOT NULL,
-                    Address TEXT,
-                    Gender TEXT NOT NULL
+                CREATE TABLE IF NOT EXISTS Exam (
+                    EId INTEGER PRIMARY KEY AUTOINCREMENT,
+                    TimeSlot TEXT NOT NULL,
+                    Date TEXT NOT NULL,
+                    SubjectId INTEGER,
+                    EHall TEXT NOT NULL,
+                    EName TEXT NOT NULL,
+                    FOREIGN KEY (SubjectId) REFERENCES Subject(SubjectId)
+                    
                 );
 
                 CREATE TABLE IF NOT EXISTS Halls (HallNo INTEGER PRIMARY KEY,
                     RoomType TEXT NOT NULL,
                     HName TEXT NOT NULL 
+                );
+
+                CREATE TABLE IF NOT EXISTS Mark (
+                    MarkID INTEGER PRIMARY KEY AUTOINCREMENT,
+                    StudentId INTEGER,
+                    SubjectId INTEGER,
+                    EId INTEGER,
+                    Score INTEGER,
+                    FOREIGN KEY (StudentId) REFERENCES Students(StudentId),
+                    FOREIGN KEY (SubjectId) REFERENCES Subject(SubjectId),
+                    FOREIGN KEY (EId) REFERENCES Exam(EId)
                 );
             ";
 

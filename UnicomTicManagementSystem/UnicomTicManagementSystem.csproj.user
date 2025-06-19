@@ -7,6 +7,9 @@
     <Compile Update="View\Login.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\MarkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="View\Select.cs">
       <SubType>Form</SubType>
     </Compile>

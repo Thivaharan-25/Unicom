@@ -28,3 +28,4 @@ Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-
 Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-windows\UnicomTicManagementSystem.pdb
 Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-windows\UnicomTicManagementSystem.genruntimeconfig.cache
 Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-windows\ref\UnicomTicManagementSystem.dll
+Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-windows\UnicomTicManagementSystem.View.MarkForm.resources

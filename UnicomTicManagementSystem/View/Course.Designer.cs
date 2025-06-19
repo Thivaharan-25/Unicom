@@ -43,6 +43,7 @@
             // 
             // dgv_course
             // 
+            dgv_course.BackgroundColor = SystemColors.ControlLightLight;
             dgv_course.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_course.Location = new Point(407, 12);
             dgv_course.Name = "dgv_course";

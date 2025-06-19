@@ -18,7 +18,7 @@ namespace UnicomTicManagementSystem.View
         {
             InitializeComponent();
             LoadForm(new student());
-           
+
         }
         public void LoadForm(object formObj)
         {
@@ -75,12 +75,12 @@ namespace UnicomTicManagementSystem.View
 
         private void btn_course_Click(object sender, EventArgs e)
         {
-         
-        
-          
-        
-        LoadForm(new Course());
-        
+
+
+
+
+            LoadForm(new Course());
+
         }
 
         private void btn_usermain_Click_1(object sender, EventArgs e)
@@ -96,6 +96,11 @@ namespace UnicomTicManagementSystem.View
         private void btn_exammain_Click(object sender, EventArgs e)
         {
             LoadForm(new Exam());
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            LoadForm(new MarkForm());
         }
     }
 }

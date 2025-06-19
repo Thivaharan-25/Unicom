@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UnicomTicManagementSystem")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c361b2dfe2a6d9e9934e7b07323b5a9f83cb8a96")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b9c84c768ad57ef9f2da20b971a4501868048e32")]
 [assembly: System.Reflection.AssemblyProductAttribute("UnicomTicManagementSystem")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UnicomTicManagementSystem")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Select));
             admin_panel = new Panel();
             btn_course = new Button();
             btn_usermain = new Button();
             btn_timetable = new Button();
             btn_exammain = new Button();
             mainpanel = new Panel();
+            button1 = new Button();
             admin_panel.SuspendLayout();
             SuspendLayout();
             // 
@@ -41,20 +43,24 @@
             // 
             admin_panel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             admin_panel.BackColor = SystemColors.ActiveCaption;
+            admin_panel.BackgroundImage = (Image)resources.GetObject("admin_panel.BackgroundImage");
             admin_panel.BorderStyle = BorderStyle.FixedSingle;
+            admin_panel.Controls.Add(button1);
             admin_panel.Controls.Add(btn_course);
             admin_panel.Controls.Add(btn_usermain);
             admin_panel.Controls.Add(btn_timetable);
             admin_panel.Controls.Add(btn_exammain);
             admin_panel.Location = new Point(0, 0);
             admin_panel.Name = "admin_panel";
-            admin_panel.Size = new Size(186, 490);
+            admin_panel.Size = new Size(129, 490);
             admin_panel.TabIndex = 4;
             admin_panel.Paint += panel1_Paint;
             // 
             // btn_course
             // 
-            btn_course.BackColor = SystemColors.ActiveCaption;
+            btn_course.BackColor = SystemColors.Control;
+            btn_course.BackgroundImage = (Image)resources.GetObject("btn_course.BackgroundImage");
+            btn_course.BackgroundImageLayout = ImageLayout.Zoom;
             btn_course.Font = new Font("Rockwell", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_course.Location = new Point(3, 252);
             btn_course.Name = "btn_course";
@@ -66,7 +72,9 @@
             // 
             // btn_usermain
             // 
-            btn_usermain.BackColor = SystemColors.ActiveCaption;
+            btn_usermain.BackColor = SystemColors.ButtonHighlight;
+            btn_usermain.BackgroundImage = (Image)resources.GetObject("btn_usermain.BackgroundImage");
+            btn_usermain.BackgroundImageLayout = ImageLayout.Stretch;
             btn_usermain.Font = new Font("Rockwell", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_usermain.ForeColor = SystemColors.ControlText;
             btn_usermain.Location = new Point(3, 83);
@@ -79,7 +87,9 @@
             // 
             // btn_timetable
             // 
-            btn_timetable.BackColor = SystemColors.ActiveCaption;
+            btn_timetable.BackColor = SystemColors.Control;
+            btn_timetable.BackgroundImage = (Image)resources.GetObject("btn_timetable.BackgroundImage");
+            btn_timetable.BackgroundImageLayout = ImageLayout.Zoom;
             btn_timetable.Font = new Font("Rockwell", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_timetable.Location = new Point(3, 197);
             btn_timetable.Name = "btn_timetable";
@@ -91,7 +101,9 @@
             // 
             // btn_exammain
             // 
-            btn_exammain.BackColor = SystemColors.ActiveCaption;
+            btn_exammain.BackColor = SystemColors.Control;
+            btn_exammain.BackgroundImage = (Image)resources.GetObject("btn_exammain.BackgroundImage");
+            btn_exammain.BackgroundImageLayout = ImageLayout.Zoom;
             btn_exammain.Font = new Font("Rockwell", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_exammain.Location = new Point(3, 138);
             btn_exammain.Name = "btn_exammain";
@@ -108,6 +120,20 @@
             mainpanel.Size = new Size(1021, 488);
             mainpanel.TabIndex = 5;
             mainpanel.Paint += mainpanel_Paint;
+            // 
+            // button1
+            // 
+            button1.BackColor = SystemColors.Control;
+            button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
+            button1.BackgroundImageLayout = ImageLayout.Zoom;
+            button1.Font = new Font("Rockwell", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.Location = new Point(3, 316);
+            button1.Name = "button1";
+            button1.Size = new Size(115, 42);
+            button1.TabIndex = 4;
+            button1.Text = "Score Maintenance\r\n";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click_2;
             // 
             // Select
             // 
@@ -133,5 +159,6 @@
         private Button btn_course;
         private Button btn_timetable;
         private Button btn_exammain;
+        private Button button1;
     }
 }

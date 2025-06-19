@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -273,32 +274,85 @@ namespace UnicomTicManagementSystem.Controller
                     cmd.Parameters.AddWithValue("@address", user.address);
                     cmd.ExecuteNonQuery();
                 }
+
+                if (user.Role.ToLower() == "student")
+                {
+                    using (var cmd = new SQLiteCommand("UPDATE Students SET Name=@Name,Address=@Address,Gender=@Gender,Password=@password WHERE UsersId = @UserId", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@UserId",user.Id);
+                        cmd.Parameters.AddWithValue("@Name", user.username);
+                        cmd.Parameters.AddWithValue("@Address", user.address);
+                        cmd.Parameters.AddWithValue("@Gender", user.Gender);
+                        cmd.Parameters.AddWithValue("@password", user.password);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                else if (user.Role.ToLower() == "lecturer")
+                {
+                    using (var cmd = new SQLiteCommand("UPDATE Lecturers SET LName=@Name, LAddress=@Address, LGender=@Gender ,LPassword=@password WHERE UsersId = @UserId", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@UserId",user.Id);
+                        cmd.Parameters.AddWithValue("@Name", user.username);
+                        cmd.Parameters.AddWithValue("@Address", user.address);
+                        cmd.Parameters.AddWithValue("@Gender", user.Gender);
+                        cmd.Parameters.AddWithValue("@password", user.password);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
             }
             return user;
         }
 
-        public void DeleteUser(int UsersId)
+        public void DeleteUser(int usersId)
         {
             using (var conn = DbConfig.GetConnection())
             {
+              
 
-                var cmd = conn.CreateCommand();
-                cmd.CommandText = "DELETE FROM Users WHERE UsersId = @id";
-                cmd.Parameters.AddWithValue("@id", UsersId);
-                cmd.ExecuteNonQuery();
+                // First, get the role of the user
+                string role = "";
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT UsersRole FROM Users WHERE UsersId = @id";
+                    cmd.Parameters.AddWithValue("@id", usersId);
+                    var result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        role = result.ToString().ToLower();
+                    }
+                }
 
-                //{
-                //    cmd.Parameters.AddWithValue("@UserId", user.Id);
-                //    cmd.Parameters.AddWithValue("@Name", user.username);
-                //    cmd.Parameters.AddWithValue("@Password", user.password);
-                //    cmd.Parameters.AddWithValue("@Role", user.Role);
-                //    cmd.Parameters.AddWithValue("@Gender", user.Gender);
-                //    cmd.Parameters.AddWithValue("@address", user.address);
-                //    cmd.ExecuteNonQuery();
-                //}
+                // Delete from respective role-specific table
+                if (role == "student")
+                {
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = "DELETE FROM Students WHERE UsersId = @id";
+                        cmd.Parameters.AddWithValue("@id", usersId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                else if (role == "staff" || role == "lecturer")
+                {
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = "DELETE FROM Lecturers WHERE UsersId = @id";
+                        cmd.Parameters.AddWithValue("@id", usersId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                // Finally, delete from Users table
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM Users WHERE UsersId = @id";
+                    cmd.Parameters.AddWithValue("@id", usersId);
+                    cmd.ExecuteNonQuery();
+                }
             }
-
         }
+
         private string GetPrefix(string role)
         {
             return role.ToLower() switch

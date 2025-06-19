@@ -179,7 +179,7 @@ namespace UnicomTicManagementSystem.Controller
                 return false;
             }
         }
-            public List<string> GetAllCourseNames()
+        public List<string> GetAllCourseNames()
         {
             List<string> CourseNames = new List<string>();
 
@@ -199,6 +199,18 @@ namespace UnicomTicManagementSystem.Controller
             }
 
             return CourseNames;
+        }
+        public void DeleteTime(int Time)
+        {
+            using (var conn = DbConfig.GetConnection())
+            {
+
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "DELETE FROM TimeTable WHERE TimetableId = @id";
+                cmd.Parameters.AddWithValue("@id", Time);
+                cmd.ExecuteNonQuery();
+
+            }
         }
     }
 }

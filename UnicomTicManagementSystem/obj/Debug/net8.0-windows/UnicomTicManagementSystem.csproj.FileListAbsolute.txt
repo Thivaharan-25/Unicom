@@ -13,6 +13,7 @@ Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-
 Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-windows\UnicomTicManagementSystem.View.Course.resources
 Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-windows\UnicomTicManagementSystem.View.Exam.resources
 Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-windows\UnicomTicManagementSystem.Unicom.resources
+Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-windows\UnicomTicManagementSystem.View.MarkForm.resources
 Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-windows\UnicomTicManagementSystem.View.Select.resources
 Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-windows\UnicomTicManagementSystem.View.student.resources
 Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-windows\UnicomTicManagementSystem.View.Timetable.resources
@@ -28,4 +29,3 @@ Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-
 Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-windows\UnicomTicManagementSystem.pdb
 Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-windows\UnicomTicManagementSystem.genruntimeconfig.cache
 Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-windows\ref\UnicomTicManagementSystem.dll
-Z:\project\UnicomTicManagementSystem\UnicomTicManagementSystem\obj\Debug\net8.0-windows\UnicomTicManagementSystem.View.MarkForm.resources

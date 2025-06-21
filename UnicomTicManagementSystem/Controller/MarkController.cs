@@ -25,17 +25,27 @@ namespace UnicomTicManagementSystem.Controller
                 {
                     while (reader.Read())
                     {
-                        mark.Add(new Mark
+                        try
                         {
+                            int id = reader.GetInt32(0);
+                            string userCode = reader.IsDBNull(6) ? null : reader.GetString(6);
+                            int score = reader.GetInt32(4); // may throw if column is NULL or not INT
+                            string subject = reader.IsDBNull(5) ? null : reader.GetString(5);
 
-                            Id = reader.GetInt32(0),
-                            StudentCode = reader.GetString(1),
-                            Name = reader.GetString(2),
-                            Subject= reader.GetString(3),
-                            
-
-                        });
+                            mark.Add(new Mark
+                            {
+                                Id = id,
+                                StudentCode = userCode,
+                                Score = score,
+                                Subject = subject
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Data parsing error: " + ex.Message);
+                        }
                     }
+
                 }
             }
             return mark;
@@ -63,6 +73,110 @@ namespace UnicomTicManagementSystem.Controller
             return subjectNames;
         }
 
+        public void DeleteMark(int mark)
+        {
+            using (var conn = DbConfig.GetConnection())
+            {
 
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "DELETE FROM Mark WHERE MarkID = @id";
+                cmd.Parameters.AddWithValue("@id", mark);
+                cmd.ExecuteNonQuery();
+
+            }
+        }
+
+        public bool UpdateMark(Mark mark)
+        {
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string quary = @"UPDATE Mark 
+                             SET UserCode = @code,Score = @mark,SubjectName=@subject
+                             WHERE MarkID=@id";
+
+                    using (SQLiteCommand cmd = new SQLiteCommand(quary, conn))
+                    {
+          
+                        cmd.Parameters.AddWithValue("@mark", mark.Score);
+
+                        cmd.Parameters.AddWithValue("@subject", mark.Subject);
+
+                        cmd.Parameters.AddWithValue("@code", mark.StudentCode);
+
+                        cmd.Parameters.AddWithValue("@id", mark.Id);
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    //using (var conn1 = DbConfig.GetConnection())
+                    //{
+                    //    string query = @"UPDATE Halls 
+                    //             SET HName = @name, RoomType = @type
+                    //             WHERE HallNo = @id";
+
+                    //    using (SQLiteCommand cmd = new SQLiteCommand(query, conn1))
+                    //    {
+                    //        cmd.Parameters.AddWithValue("@id", time.HallNo); // ✅ ADD THIS
+                    //        cmd.Parameters.AddWithValue("@name", time.Hall);
+                    //        cmd.Parameters.AddWithValue("@type", time.RoomType);
+                    //        cmd.ExecuteNonQuery();
+                    //    }
+                    //}
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return false;
+            }
+
+
+        }
+
+
+       
+
+        public bool AddMark(Mark mark)
+        {
+            try
+            {
+                using (var conn = DbConfig.GetConnection())
+                {
+                    string query = "INSERT INTO Mark (Score,SubjectName,UserCode) " +
+                                   "VALUES (@mark,@name,@code)";
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                    {
+                        //cmd.Parameters.AddWithValue("@id", mark.Id);    
+                        cmd.Parameters.AddWithValue("@mark", mark.Score);
+                        cmd.Parameters.AddWithValue("@code", mark.StudentCode);
+
+                        cmd.Parameters.AddWithValue("@name", mark.Subject);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    //using (var conn1 = DbConfig.GetConnection())
+                    //{
+                    //    string quary = "INSERT INTO Halls (HName,RoomType)" + "VALUES (@name,@type)";
+                    //    using (SQLiteCommand cmd = new SQLiteCommand(quary, conn1))
+                    //    {
+                    //        //cmd.Parameters.AddWithValue("@id", time.HallNo);
+                    //        cmd.Parameters.AddWithValue("@name", exam.Hall);
+                    //        cmd.Parameters.AddWithValue("@type", exam.RoomType);
+                    //        cmd.ExecuteNonQuery();
+                    //    }
+                    //}
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                return false;
+            }
+        }
     }
 }

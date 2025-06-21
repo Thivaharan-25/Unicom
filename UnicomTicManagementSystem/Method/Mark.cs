@@ -8,8 +8,9 @@ namespace UnicomTicManagementSystem.Method
 {
     internal class Mark
     {
-        public int Id { get; set; } 
-        public string Name { get; set; }
+        public int Id { get; set; }
+        //public int MarkID { get; set; }
+        public int Score { get; set; }
         public string StudentCode { get; set; }
         public string Subject { get; set; }
     }

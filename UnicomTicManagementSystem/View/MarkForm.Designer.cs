@@ -54,6 +54,7 @@
             btn_update.TabIndex = 19;
             btn_update.Text = "Update";
             btn_update.UseVisualStyleBackColor = false;
+            btn_update.Click += btn_update_Click;
             // 
             // label1
             // 
@@ -123,8 +124,9 @@
             dgv_result.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_result.Location = new Point(288, 34);
             dgv_result.Name = "dgv_result";
-            dgv_result.Size = new Size(483, 357);
+            dgv_result.Size = new Size(464, 357);
             dgv_result.TabIndex = 27;
+            dgv_result.SelectionChanged += dvg_result_SelectionChanged;
             // 
             // btn_delete
             // 
@@ -148,6 +150,7 @@
             btn_add.TabIndex = 29;
             btn_add.Text = "Add";
             btn_add.UseVisualStyleBackColor = false;
+            btn_add.Click += btn_add_Click;
             // 
             // MarkForm
             // 

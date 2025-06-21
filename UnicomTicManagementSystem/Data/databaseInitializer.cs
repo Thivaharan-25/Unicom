@@ -48,7 +48,9 @@ namespace UnicomTicManagementSystem.Data
                     Address TEXT,
                     Gender TEXT NOT NULL,
                     UsersId INTEGER,
-                    FOREIGN KEY (UsersId) REFERENCES Users(UsersId)
+                    UserCode TEXT,
+                    FOREIGN KEY (UsersId) REFERENCES Users(UsersId),
+                    FOREIGN KEY (UserCode) REFERENCES Users(UserCode) 
                 );
 
                 CREATE TABLE IF NOT EXISTS Lecturers (
@@ -71,10 +73,19 @@ namespace UnicomTicManagementSystem.Data
                     SubjectId INTEGER,
                     LecturerId INTEGER,
                     HallNo INTEGER,
+                    CName TEXT,
+                    SubjectName INTEGER,
+                    LName INTEGER,
+                    HName INTEGER,
+                    FOREIGN KEY (CName) REFERENCES Courses(CName),
+                    FOREIGN KEY (SubjectName) REFERENCES Subject(SubjectName),
+                    FOREIGN KEY (LName) REFERENCES Lecturer(LName),
+                    FOREIGN KEY (HName) REFERENCES Halls(HName),
                     FOREIGN KEY (CourseID) REFERENCES Courses(CourseID),
-                    FOREIGN KEY (SubjectId) REFERENCES Subject(SubjectId),
-                    FOREIGN KEY (LecturerId) REFERENCES Lecturer(LecturerId),
-                    FOREIGN KEY (HallNo) REFERENCES Halls(HallNo)
+                    FOREIGN KEY (SubjectId) REFERENCES Subject(SubjectId),  
+                    FOREIGN KEY (LecturerId) REFERENCES Lecturers(LecturerId),
+                    FOREIGN KEY (HallNo) REFERENCES Halls(HallNo)   
+
                 );
 
                 
@@ -84,9 +95,12 @@ namespace UnicomTicManagementSystem.Data
                     TimeSlot TEXT NOT NULL,
                     Date TEXT NOT NULL,
                     SubjectId INTEGER,
+                    SubjectName TEXT,
                     EHall TEXT NOT NULL,
                     EName TEXT NOT NULL,
+                    FOREIGN KEY (SubjectName) REFERENCES Subject(SubjectName),
                     FOREIGN KEY (SubjectId) REFERENCES Subject(SubjectId)
+                   
                     
                 );
 
@@ -100,10 +114,14 @@ namespace UnicomTicManagementSystem.Data
                     StudentId INTEGER,
                     SubjectId INTEGER,
                     EId INTEGER,
-                    Score INTEGER,
+                    Score INTEGER NOT NULL,
+                    SubjectName TEXT,
+                    UserCode TEXT,
+                    FOREIGN KEY (UserCode) REFERENCES Students(UserCode),
                     FOREIGN KEY (StudentId) REFERENCES Students(StudentId),
                     FOREIGN KEY (SubjectId) REFERENCES Subject(SubjectId),
-                    FOREIGN KEY (EId) REFERENCES Exam(EId)
+                    FOREIGN KEY (EId) REFERENCES Exam(EId),
+                    FOREIGN KEY (SubjectName) REFERENCES Subject(SubjectName)
                 );
             ";
 

@@ -27,9 +27,9 @@ namespace UnicomTicManagementSystem.Controller
                         exam.Add(new ExamN
                         {
                             Id = reader.GetInt32(0),
-                            Name = reader.GetString(5),
-                            Subject = reader.GetString(3),
-                            Hall = reader.GetString(4),
+                            Name = reader.GetString(6),
+                            Subject = reader.GetString(4),
+                            Hall = reader.GetString(5),
                             TimeSlot = reader.GetString(1),
                             Date = reader.GetString(2),
                         });
@@ -45,9 +45,9 @@ namespace UnicomTicManagementSystem.Controller
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    string quary = @"UPDATE TimeTable 
-                             SET DayOfWeek = @date, TimeSlot = @time, CourseID = @course,
-                                 SubjectId = @subject, LecturerId = @lecturer, HallNo = @hall
+                    string quary = @"UPDATE Exam 
+                             SET DayOfWeek = @date, TimeSlot = @time, 
+                                 SubjectName = @subject,EHall = @hall
                              WHERE TimetableID = @id";
 
                     using (SQLiteCommand cmd = new SQLiteCommand(quary, conn))
@@ -93,7 +93,7 @@ namespace UnicomTicManagementSystem.Controller
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    string query = "INSERT INTO Exam(EId,Date,TimeSlot,SubjectId,EHall,EName) " +
+                    string query = "INSERT INTO Exam(EId,Date,TimeSlot,SubjectName,EHall,EName) " +
                                    "VALUES (@id ,@date, @time,@subject,@hall,@name)";
                     using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                     {

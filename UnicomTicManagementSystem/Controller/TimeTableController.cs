@@ -35,10 +35,10 @@ namespace UnicomTicManagementSystem.Controller
                             Id = reader.GetInt32(0),
                             DateOfWeek = reader.IsDBNull(1) ? null : reader.GetString(1),
                             TimeSlot = reader.IsDBNull(2) ? null : reader.GetString(2),
-                            Course = reader.IsDBNull(3) ? null : reader.GetString(3),
-                            Subject = reader.IsDBNull(4) ? null : reader.GetString(4),
-                            Lecturer = reader.IsDBNull(5) ? null : reader.GetString(5),
-                            Hall = reader.IsDBNull(6) ? null : reader.GetString(6),
+                            Course = reader.IsDBNull(7) ? null : reader.GetString(7),
+                            Subject = reader.IsDBNull(8) ? null : reader.GetString(8),
+                            Lecturer = reader.IsDBNull(9) ? null : reader.GetString(9),
+                            Hall = reader.IsDBNull(10) ? null : reader.GetString(10),
                         });
 
                     }
@@ -98,8 +98,8 @@ namespace UnicomTicManagementSystem.Controller
                 using (var conn = DbConfig.GetConnection())
                 {
                     string quary = @"UPDATE TimeTable 
-                             SET DayOfWeek = @date, TimeSlot = @time, CourseID = @course,
-                                 SubjectId = @subject, LecturerId = @lecturer, HallNo = @hall
+                             SET DayOfWeek = @date, TimeSlot = @time, CName = @course,
+                                 SubjectName = @subject, LName = @lecturer, HName = @hall
                              WHERE TimetableID = @id";
 
                     using (SQLiteCommand cmd = new SQLiteCommand(quary, conn))
@@ -146,7 +146,7 @@ namespace UnicomTicManagementSystem.Controller
             {
                 using (var conn = DbConfig.GetConnection())
                 {
-                    string query = "INSERT INTO TimeTable(DayOfWeek,TimeSlot,CourseID,SubjectId,LecturerId,HallNo) " +
+                    string query = "INSERT INTO TimeTable(DayOfWeek,TimeSlot,CName,SubjectName,Lname,HName) " +
                                    "VALUES (@date, @time, @course, @subject, @lecturer,@hall)";
                     using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                     {

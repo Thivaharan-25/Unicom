@@ -1,6 +1,6 @@
 ﻿namespace UnicomTicManagementSystem.View
 {
-    partial class student
+    partial class AddUsersForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(student));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddUsersForm));
             T_uname = new TextBox();
             label1 = new Label();
             label2 = new Label();
@@ -113,7 +113,7 @@
             btn_register.BackColor = SystemColors.ActiveCaptionText;
             btn_register.Font = new Font("Century", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_register.ForeColor = SystemColors.ControlLightLight;
-            btn_register.Location = new Point(283, 434);
+            btn_register.Location = new Point(25, 454);
             btn_register.Name = "btn_register";
             btn_register.Size = new Size(75, 23);
             btn_register.TabIndex = 7;
@@ -126,7 +126,7 @@
             button1.BackColor = SystemColors.ActiveCaptionText;
             button1.Font = new Font("Century", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = SystemColors.ControlLightLight;
-            button1.Location = new Point(202, 434);
+            button1.Location = new Point(193, 454);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 8;
@@ -139,7 +139,7 @@
             button2.BackColor = SystemColors.ActiveCaptionText;
             button2.Font = new Font("Century", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button2.ForeColor = SystemColors.ControlLightLight;
-            button2.Location = new Point(112, 434);
+            button2.Location = new Point(285, 454);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 9;
@@ -152,7 +152,7 @@
             button3.BackColor = SystemColors.ActiveCaptionText;
             button3.Font = new Font("Century", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button3.ForeColor = SystemColors.ControlLightLight;
-            button3.Location = new Point(10, 434);
+            button3.Location = new Point(112, 454);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 10;

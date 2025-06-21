@@ -155,7 +155,7 @@ namespace UnicomTicManagementSystem.View
         {
             if (string.IsNullOrWhiteSpace(t_mark.Text) || string.IsNullOrWhiteSpace(c_subject.Text) || string.IsNullOrEmpty(t_code.Text))
             {
-                MessageBox.Show("Please enter Score , StudentCode and Subject.");
+                MessageBox.Show("Please enter Score,StudentCode and Subject.");
                 return;
             }
 
@@ -173,7 +173,7 @@ namespace UnicomTicManagementSystem.View
             bool success = Markc.AddMark(mark);
             if (success)
             {
-                MessageBox.Show("Course added successfully!");
+                MessageBox.Show("Mark added successfully!");
                 lord_Result(); // Refresh DataGridView to show new data
 
                 // Optionally clear input fields
@@ -183,7 +183,7 @@ namespace UnicomTicManagementSystem.View
             }
             else
             {
-                MessageBox.Show("Failed to add course.");
+                MessageBox.Show("Failed to add Mark.");
             }
         }
     }

@@ -10,16 +10,19 @@
     <Compile Update="View\MarkForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\Select.cs">
+    <Compile Update="View\DashBoard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\Student(admin).cs">
+    <Compile Update="View\AddUsersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\ExamMaintenance.cs">
+    <Compile Update="View\ExamTimeTableForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\Timetable.cs">
+    <Compile Update="View\StudentResultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\TimetableForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

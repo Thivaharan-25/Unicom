@@ -28,6 +28,12 @@ namespace UnicomTicManagementSystem.Data
                     UsersRole TEXT NOT NULL
                 );
 
+                -- Insert default user only if table is empty
+                    INSERT INTO Users (UserCode, UserName, UsersPassword, UsersAddress, UsersGender, UsersRole)
+                    SELECT 'AT010776', 'Default Admin', '1234', 'Admin Address', 'Male', 'admin'
+                    WHERE NOT EXISTS (SELECT 1 FROM Users
+                );
+
                 CREATE TABLE IF NOT EXISTS Courses(
                     CourseID INTEGER PRIMARY KEY AUTOINCREMENT,
                     CName TEXT NOT NULL

@@ -72,6 +72,33 @@ namespace UnicomTicManagementSystem.Controller
 
             return subjectNames;
         }
+        public List<Mark> GetMarksByStudentCode(string studentCode)
+        {
+            List<Mark> marks = new List<Mark>();
+            using (var conn = DbConfig.GetConnection())
+            {
+                string query = "SELECT * FROM Mark WHERE UserCode = @code";
+                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@code", studentCode);
+
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            marks.Add(new Mark
+                            {
+                                Id = reader.GetInt32(0), // MarkID
+                                Score = reader.GetInt32(reader.GetOrdinal("Score")),
+                                StudentCode = reader["UserCode"].ToString(),
+                                Subject = reader["SubjectName"].ToString()
+                            });
+                        }
+                    }
+                }
+            }
+            return marks;
+        }
 
         public void DeleteMark(int mark)
         {

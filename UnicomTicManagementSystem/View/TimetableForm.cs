@@ -15,11 +15,11 @@ using static UnicomTicManagementSystem.Method.Users;
 
 namespace UnicomTicManagementSystem.View
 {
-    public partial class Timetable : Form
+    public partial class TimetableForm : Form
     {
         private int selectedTimeId = -1;
         TimeTableController Timec = new TimeTableController();
-        public Timetable()
+        public TimetableForm()
         {
             InitializeComponent();
             Timetable_load();
@@ -29,12 +29,62 @@ namespace UnicomTicManagementSystem.View
             LoadCoursesIntoComboBox();
             LoadSubjectsIntoComboBox();
             LoadLecturerIntoComboBox();
+            ApplyRolePermissions();
             lord_time();
         }
-        private void Timetable_Load(object sender, EventArgs e)
+        private void ApplyRolePermissions()
         {
-           
+            string role = Session.LoggedInUser?.Role?.ToLower();
 
+            if (role == "student" || role == "staff" || role == "lecturer")
+            {
+                c_lecturer.Visible = false;
+                c_subject.Visible = false;
+                t_hall.Visible = false;
+                t_date.Visible = false;
+                d_time.Visible = false;
+                d_time2.Visible = false;
+                c_roomtype.Visible = false;
+                c_course.Visible = false;
+                btn_add.Visible = false;
+                btn_update.Visible = false;
+                btn_delete.Visible = false;
+                label1.Visible = false;
+                label2.Visible = false;
+                label3.Visible = false;
+                label4.Visible = false;
+                label5.Visible = false;
+                label6.Visible = false;
+                label7.Visible = false;
+               
+
+            }
+            else
+            {
+                c_lecturer.Visible = true;
+                c_subject.Visible = true;
+                t_hall.Visible = true;
+                t_date.Visible = true;
+                d_time.Visible = true;
+                d_time2.Visible = true;
+                c_roomtype.Visible = true;
+                c_course.Visible = true;
+                btn_add.Visible = true;
+                btn_update.Visible = true;
+                btn_delete.Visible = true;
+                label1.Visible = true;
+                label2.Visible = true;
+                label3.Visible = true;
+                label4.Visible = true;
+                label5.Visible = true;
+                label6.Visible = true;
+                label7.Visible = true;
+
+            }
+        }
+        private void Timetable_Load(object sender, EventArgs e)
+        { 
+        
         }
 
         private void LoadLecturerIntoComboBox()
@@ -241,7 +291,7 @@ namespace UnicomTicManagementSystem.View
             if (confirmResult == DialogResult.Yes)
             {
                 Timec.DeleteTime(selectedTimeId);
-                MessageBox.Show("User Deleted Successfully");
+                MessageBox.Show("Deleted Successfully");
                 lord_time();
             }
         }

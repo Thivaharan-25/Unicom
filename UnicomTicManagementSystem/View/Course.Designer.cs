@@ -56,7 +56,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(12, 124);
+            label1.Location = new Point(12, 146);
             label1.Name = "label1";
             label1.Size = new Size(99, 19);
             label1.TabIndex = 1;
@@ -64,14 +64,14 @@
             // 
             // t_course
             // 
-            t_course.Location = new Point(117, 124);
+            t_course.Location = new Point(120, 142);
             t_course.Name = "t_course";
             t_course.Size = new Size(248, 23);
             t_course.TabIndex = 2;
             // 
             // t_subject
             // 
-            t_subject.Location = new Point(114, 176);
+            t_subject.Location = new Point(117, 190);
             t_subject.Name = "t_subject";
             t_subject.Size = new Size(251, 23);
             t_subject.TabIndex = 3;
@@ -80,7 +80,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(26, 176);
+            label2.Location = new Point(51, 194);
             label2.Name = "label2";
             label2.Size = new Size(60, 19);
             label2.TabIndex = 4;
@@ -89,9 +89,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(64, -22);
+            pictureBox1.Location = new Point(71, -22);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(200, 126);
+            pictureBox1.Size = new Size(200, 140);
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click_1;
@@ -137,6 +137,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "Course";
             Text = "Course";
+            Load += Course_Load;
             ((System.ComponentModel.ISupportInitialize)dgv_course).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

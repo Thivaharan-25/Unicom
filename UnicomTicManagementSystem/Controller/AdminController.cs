@@ -65,117 +65,78 @@ namespace UnicomTicManagementSystem.Controller
             return users;
         }
 
-        //public List<Method.Course> GetAllStudents()
-        //{
-        //    List<Method.Course> students = new List<Method.Course>();
-        //    using (var conn = DbConfig.GetConnection())
-        //    {
-        //        var cmd = conn.CreateCommand();
-        //        cmd.CommandText = "SELECT * FROM Students "; var conn1 = conn;
+        public List<Student> Getstudent()
+        {
+            List<Student> users = new List<Student>();
+            using (var conn = DbConfig.GetConnection())
+            {
+
+                var cmd = new SQLiteCommand(@"SELECT * FROM Student", conn);
+                //cmd.CommandText = "SELECT * FROM Users"; var conn1 = conn;
 
 
-        //        using (var reader = cmd.ExecuteReader())
-        //        {
-        //            while (reader.Read())
-        //            {
-        //                students.Add(new Method.Course
-        //                {
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        users.Add(new Student
+                        {
 
-        //                    StudentId = reader.GetInt32(0),
-        //                    Name = reader.GetString(1),
-        //                    Address = reader.GetString(2),
-        //                    Password = reader.GetString(3)
+                            Id = reader.GetInt32(0),
+                            StudentCode = reader.GetString(1),
+                            Name = reader.GetString(2),
+                            Password = reader.GetString(3),
 
-        //                });
-        //            }
-        //        }
-        //    }
-        //    return students;
-        //}
-        //public void Insertsaff(Staff staff)
-        //{
+                        
+                          
 
-        //    using (var conn = DbConfig.GetConnection())
-        //    {
-        //        var cmd = conn.CreateCommand();
-        //        cmd.CommandText = "INSERT INTO Staff (Name, Password, Address, Gender) VALUES (@name, @password, @address, @gender)";
-        //        cmd.Parameters.AddWithValue("@name", staff.Name);
-        //        cmd.Parameters.AddWithValue("@password", staff.Password);
-        //        cmd.Parameters.AddWithValue("@address", staff.Address);
-        //        cmd.Parameters.AddWithValue("@gender", staff.Gender);
-        //        cmd.ExecuteNonQuery();
-        //    }
-        //}
-        //public List<Staff> GetAllStaff()
-        //{
-        //    List<Staff> staff = new List<Staff>();
-        //    using (var conn = DbConfig.GetConnection())
-        //    {
-        //        var cmd = conn.CreateCommand();
-        //        cmd.CommandText = "SELECT * FROM Staff";
+                        });
+                    }
+                }
+            }
+            return users;
+        }
 
-        //        using (var reader = cmd.ExecuteReader())
-        //        {
-        //            while (reader.Read())
-        //            {
-        //                staff.Add(new Staff
-        //                {
-        //                    StaffId = reader.GetInt32(0),
-        //                    Name = reader.GetString(1),
-        //                    Address = reader.GetString(2),
-        //                    Password = reader.GetString(3),
-        //                    Gender = reader.GetString(4)
-
-        //                });
-        //            }
-        //        }
-        //    }
-        //    return staff;
-        //}
         public bool Login(Credentials credentials)
         {
             try
             {
                 var user = new Users();
+
                 using (var conn = DbConfig.GetConnection())
                 {
-
-
-                    string query = "SELECT UserCode, UsersPassword FROM Users WHERE UserCode = @Username";
-
+                    string query = "SELECT UserCode, UsersPassword, UsersRole FROM Users WHERE UserCode = @UserCode";
 
                     using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                     {
-
                         cmd.Parameters.AddWithValue("@UserCode", credentials.userName);
 
-
-                        SQLiteDataReader reader = cmd.ExecuteReader();
-                        while (reader.Read())
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
+                            if (reader.Read())
+                            {
+                                user.username = reader["UserCode"].ToString();
+                                user.password = reader["UsersPassword"].ToString();
+                                user.Role = reader["UsersRole"].ToString();
 
-                            user.username = reader["UserCode"].ToString();
-                            user.password = reader["UsersPassword"].ToString();
-                            //user.Role = reader["UsersRole"].ToString;
-
+                                if (user.password.Trim() == credentials.password.Trim())
+                                {
+                                    Session.LoggedInUser = user;
+                                    return true;
+                                }
+                            }
                         }
                     }
-                    if (user.password == credentials.password)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                };
+                }
             }
             catch (Exception ex)
             {
-                return false;
+                MessageBox.Show("Login error: " + ex.Message);
             }
 
+            return false;
         }
+
         public Users AddUser(Users user)
         {
             using (var conn = DbConfig.GetConnection())

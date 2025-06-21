@@ -15,7 +15,7 @@ using UnicomTicManagementSystem.Method;
 
 namespace UnicomTicManagementSystem.View
 {
-    public partial class student : Form
+    public partial class AddUsersForm : Form
 
     {
         CourseController coursec = new CourseController();
@@ -31,7 +31,7 @@ namespace UnicomTicManagementSystem.View
 
         private int selectedStudentId = -1;
         private adminController adminc = new adminController();
-        public student()
+        public AddUsersForm()
         {
             InitializeComponent();
             LoadStudents();

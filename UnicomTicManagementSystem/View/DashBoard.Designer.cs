@@ -1,6 +1,6 @@
 ﻿namespace UnicomTicManagementSystem.View
 {
-    partial class Select
+    partial class DashBoard
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Select));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashBoard));
             admin_panel = new Panel();
+            button1 = new Button();
             btn_course = new Button();
             btn_usermain = new Button();
             btn_timetable = new Button();
             btn_exammain = new Button();
             mainpanel = new Panel();
-            button1 = new Button();
+            btn_result = new Button();
             admin_panel.SuspendLayout();
             SuspendLayout();
             // 
@@ -45,6 +46,7 @@
             admin_panel.BackColor = SystemColors.ActiveCaption;
             admin_panel.BackgroundImage = (Image)resources.GetObject("admin_panel.BackgroundImage");
             admin_panel.BorderStyle = BorderStyle.FixedSingle;
+            admin_panel.Controls.Add(btn_result);
             admin_panel.Controls.Add(button1);
             admin_panel.Controls.Add(btn_course);
             admin_panel.Controls.Add(btn_usermain);
@@ -56,13 +58,27 @@
             admin_panel.TabIndex = 4;
             admin_panel.Paint += panel1_Paint;
             // 
+            // button1
+            // 
+            button1.BackColor = SystemColors.Control;
+            button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
+            button1.BackgroundImageLayout = ImageLayout.Stretch;
+            button1.Font = new Font("Rockwell", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.Location = new Point(5, 300);
+            button1.Name = "button1";
+            button1.Size = new Size(115, 42);
+            button1.TabIndex = 4;
+            button1.Text = "Score Maintenance\r\n";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click_2;
+            // 
             // btn_course
             // 
             btn_course.BackColor = SystemColors.Control;
             btn_course.BackgroundImage = (Image)resources.GetObject("btn_course.BackgroundImage");
-            btn_course.BackgroundImageLayout = ImageLayout.Zoom;
+            btn_course.BackgroundImageLayout = ImageLayout.Stretch;
             btn_course.Font = new Font("Rockwell", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_course.Location = new Point(3, 252);
+            btn_course.Location = new Point(5, 363);
             btn_course.Name = "btn_course";
             btn_course.Size = new Size(115, 42);
             btn_course.TabIndex = 3;
@@ -77,7 +93,7 @@
             btn_usermain.BackgroundImageLayout = ImageLayout.Stretch;
             btn_usermain.Font = new Font("Rockwell", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_usermain.ForeColor = SystemColors.ControlText;
-            btn_usermain.Location = new Point(3, 83);
+            btn_usermain.Location = new Point(5, 125);
             btn_usermain.Name = "btn_usermain";
             btn_usermain.Size = new Size(115, 35);
             btn_usermain.TabIndex = 0;
@@ -89,9 +105,9 @@
             // 
             btn_timetable.BackColor = SystemColors.Control;
             btn_timetable.BackgroundImage = (Image)resources.GetObject("btn_timetable.BackgroundImage");
-            btn_timetable.BackgroundImageLayout = ImageLayout.Zoom;
+            btn_timetable.BackgroundImageLayout = ImageLayout.Stretch;
             btn_timetable.Font = new Font("Rockwell", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_timetable.Location = new Point(3, 197);
+            btn_timetable.Location = new Point(5, 244);
             btn_timetable.Name = "btn_timetable";
             btn_timetable.Size = new Size(115, 36);
             btn_timetable.TabIndex = 2;
@@ -103,9 +119,9 @@
             // 
             btn_exammain.BackColor = SystemColors.Control;
             btn_exammain.BackgroundImage = (Image)resources.GetObject("btn_exammain.BackgroundImage");
-            btn_exammain.BackgroundImageLayout = ImageLayout.Zoom;
+            btn_exammain.BackgroundImageLayout = ImageLayout.Stretch;
             btn_exammain.Font = new Font("Rockwell", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_exammain.Location = new Point(3, 138);
+            btn_exammain.Location = new Point(5, 183);
             btn_exammain.Name = "btn_exammain";
             btn_exammain.Size = new Size(115, 41);
             btn_exammain.TabIndex = 1;
@@ -121,19 +137,19 @@
             mainpanel.TabIndex = 5;
             mainpanel.Paint += mainpanel_Paint;
             // 
-            // button1
+            // btn_result
             // 
-            button1.BackColor = SystemColors.Control;
-            button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
-            button1.BackgroundImageLayout = ImageLayout.Zoom;
-            button1.Font = new Font("Rockwell", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(3, 316);
-            button1.Name = "button1";
-            button1.Size = new Size(115, 42);
-            button1.TabIndex = 4;
-            button1.Text = "Score Maintenance\r\n";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click_2;
+            btn_result.BackColor = SystemColors.ButtonHighlight;
+            btn_result.BackgroundImage = (Image)resources.GetObject("btn_result.BackgroundImage");
+            btn_result.BackgroundImageLayout = ImageLayout.Stretch;
+            btn_result.Font = new Font("Rockwell", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_result.Location = new Point(5, 80);
+            btn_result.Name = "btn_result";
+            btn_result.Size = new Size(115, 28);
+            btn_result.TabIndex = 5;
+            btn_result.Text = "Results\r\n";
+            btn_result.UseVisualStyleBackColor = false;
+            btn_result.Click += btn_result_Click;
             // 
             // Select
             // 
@@ -160,5 +176,6 @@
         private Button btn_timetable;
         private Button btn_exammain;
         private Button button1;
+        private Button btn_result;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace UnicomTicManagementSystem.View
 {
-    partial class Timetable
+    partial class TimetableForm
     {
         /// <summary>
         /// Required designer variable.

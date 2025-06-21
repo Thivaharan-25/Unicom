@@ -18,6 +18,9 @@ namespace UnicomTicManagementSystem.Method
         
         public string UserCode { get; set; }
 
+
+
+
         public enum Roles
         {
             Admin = 1,
@@ -37,7 +40,13 @@ namespace UnicomTicManagementSystem.Method
             public string userName { get; set; }
             public string password { get; set; }
         }
-       
+        public static class Session
+        {
+            public static Users LoggedInUser { get; set; }
+            public static string UserCode { get; set; }
+            public static string Role { get; set; }
+        }
+
     }
 }
 

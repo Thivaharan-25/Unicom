@@ -3,7 +3,9 @@ using System.Net;
 using System.Xml.Linq;
 using UnicomTicManagementSystem.Controller;
 using UnicomTicManagementSystem.Data;
+using UnicomTicManagementSystem.Method;
 using UnicomTicManagementSystem.View;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static UnicomTicManagementSystem.Method.Users;
 
 namespace UnicomTicManagementSystem
@@ -40,51 +42,72 @@ namespace UnicomTicManagementSystem
             string UserCode = t_uname.Text.Trim();
             string password = t_password.Text;
 
-            string validUserCode = "AT010776";
-            string validPassword = "1234";
+            //string validUserCode = "AT010776";
+            //string validPassword = "1234";
+            //string validRole = "Admin";
 
-            if (UserCode == validUserCode && password == validPassword)
-            {
-
-                //student maintenance = new student();
-                //maintenance.Show();
-                //this.Hide();
-                Select dashboard = new Select();
-                dashboard.Show();
-                this.Hide();
-            }
-            //if (string.IsNullOrWhiteSpace(t_uname.Text) || string.IsNullOrWhiteSpace(t_password.Text))
+            //if (UserCode == validUserCode && password == validPassword)
             //{
-            //    MessageBox.Show("Please enter both Name and Address.");
+            //    new Select().Show();
+            //    this.Hide();
             //    return;
             //}
+
+            Credentials credentials = new Credentials
+            {
+                userName = UserCode,
+                password = password
+            };
+
+            bool isLoggedIn = adminController.Login(credentials);
+            if (isLoggedIn && Session.LoggedInUser != null)
+            {
+                if (string.IsNullOrEmpty(Session.LoggedInUser.Role))
+                {
+                    MessageBox.Show("User role is missing. Cannot continue.");
+                    return;
+                }
+
+                switch (Session.LoggedInUser.Role.ToLower())
+                {
+                    case "admin":
+                       
+                        new DashBoard().Show();
+                        this.Hide();
+                        break;
+                    case "staff":
+                      
+                        new DashBoard().Show();
+                        this.Hide();
+                        break;
+                    case "student":
+                       
+                        new DashBoard().Show();
+                      
+                        this.Hide();
+                        break;
+                    case "lecture":    
+                        new DashBoard().Show();
+                       
+                        this.Hide();
+                        break;
+                    default:
+                        MessageBox.Show("Unknown role.");
+                        return;
+                }
+
+
+                this.Hide();
+            }
             else
             {
-                Credentials credentials = new Credentials();
-                credentials.userName = UserCode;
-                credentials.password = password;
-                var result = adminController.Login(credentials);
-                if (result)
-                {
-                    student maintenance = new student();
-                    maintenance.Show();
-                    this.Hide();
-
-                    Select dashboard = new Select();
-                    dashboard.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Invalid UserCode or password", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    // Optionally clear fields
-                    t_uname.Clear();
-                    t_uname.Focus();
-                }
-
+                MessageBox.Show("Invalid UserCode or password", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                t_uname.Clear();
+                t_uname.Focus();
             }
         }
+
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 

@@ -137,10 +137,10 @@ namespace UnicomTicManagementSystem.View
             CourseName Course = new CourseName
             {
                 Id = selectedCourseId,
-                Subject = t_subject.Text.Trim(),    
+                Subject = t_subject.Text.Trim(),
                 Course = t_course.Text.Trim()
             };
-            bool success = coursec.AddSubjectToCourse(selectedCourseId, t_subject.Text.Trim() , t_course.Text.Trim());
+            bool success = coursec.AddSubjectToCourse(selectedCourseId, t_subject.Text.Trim(), t_course.Text.Trim());
             if (success)
             {
                 MessageBox.Show("Update Successfull");
@@ -150,7 +150,12 @@ namespace UnicomTicManagementSystem.View
             {
                 MessageBox.Show("Failed Update");
             }
-          
+
+        }
+
+        private void Course_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

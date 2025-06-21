@@ -12,6 +12,7 @@ using UnicomTicManagementSystem.Controller;
 using UnicomTicManagementSystem.Data;
 using UnicomTicManagementSystem.Method;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using static UnicomTicManagementSystem.Method.Users;
 
 namespace UnicomTicManagementSystem.View
 {
@@ -31,6 +32,7 @@ namespace UnicomTicManagementSystem.View
         {
             LoadSubjectsIntoComboBox();
             lord_time();
+            ApplyRolePermissions();
         }
         private void LoadSubjectsIntoComboBox()
         {
@@ -98,10 +100,49 @@ namespace UnicomTicManagementSystem.View
         {
 
         }
+        private void ApplyRolePermissions()
+        {   string role = Session.LoggedInUser?.Role?.ToLower();
+
+            if (role == "student" || role == "staff" || role == "lecturer")
+            {
+                c_subject.Visible = false;
+                t_hall.Visible = false;
+                t_date.Visible = false;
+                d_time.Visible = false;
+                btn_delete.Visible = false;
+                btn_add.Visible = false;
+                btn_update.Visible = false;
+                d_time2.Visible = false;
+                t_exam.Visible = false;
+                label1.Visible = false;
+                label2.Visible = false;
+                label3.Visible = false;
+                label4.Visible = false;
+                label5.Visible = false;
+
+            }
+            else
+            {
+                c_subject.Visible = true;
+                t_hall.Visible = true;
+                t_date.Visible = true;
+                d_time.Visible = true;
+                btn_delete.Visible = true;
+                btn_add.Visible = true;
+                btn_update.Visible = true;
+                d_time2.Visible = true;
+                t_exam.Visible = true;
+                label1.Visible = true;
+                label3.Visible = true;
+                label4.Visible = true;
+                label5.Visible = true;
+
+            }
+        }
 
         private void Exam_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void c_subject_SelectedIndexChanged(object sender, EventArgs e)
